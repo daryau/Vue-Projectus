@@ -16,7 +16,8 @@ $orange-color: #FFC200;
 $title-menu: #878787;
 $coral: #ff7f50;
 
-body {
+body,html {
+    max-height: 100%;
     font-family: 'Open Sans',  Helvetica, sans-serif;
 }
 .f12 {font-size: 12px; }
@@ -33,6 +34,7 @@ h1 {
 .block {display: block; }
 
 .cnt-main {
+    height: 100vh;
     display: flex;
     .wrap {
         &__left-menu {
@@ -361,8 +363,7 @@ h1 {
                 display: flex;
                 flex-wrap: wrap;
                 &__item {
-                    padding: 12px 15px 12px 15px; 
-                    // padding: 12px 32px 12px 0; 
+                    padding: 12px 15px 12px 15px;  
                     &__link {
                         color: $count;
                         opacity: 0.7;
@@ -383,6 +384,7 @@ h1 {
         }
 
         .content-body {
+            height: calc(100vh - 132px);
             background-color: $bg-content;
             padding: 30px 30px 87px;
             box-sizing: border-box;

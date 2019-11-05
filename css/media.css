@@ -114,6 +114,10 @@
     width: 30px;
     height: 30px;
   }
+  .cnt-main .content .content-body {
+    height: 100%;
+    padding-bottom: 0;
+  }
   .cnt-main .content .content-body .wrapper-post__item {
     margin: 25px 5px;
   }
