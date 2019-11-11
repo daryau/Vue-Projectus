@@ -204,8 +204,18 @@ $yellow: #FFC200;
                 .wrapper-post { 
                     &__item {
                         margin: 25px 5px;
+                        margin-left: 0;
+                        margin-right: 0;
                         &__text {
                             margin: 0 2% 0 3%;
+                        }
+                    }
+
+                    &__item:nth-child(6) {
+                        margin-left: 0;
+                        margin-right: 0;
+                        .wrapper-post__item__text {
+                            padding: 10px 15px;
                         }
                     }
                 }
@@ -229,7 +239,6 @@ $yellow: #FFC200;
         }
     }
 }
-
 @media screen and (max-width: 415px) {
     .cnt-main {
         .content {
@@ -245,14 +254,29 @@ $yellow: #FFC200;
     }
 } 
 
-@media screen and (max-width: 401px){
+@media screen and (max-width: 410px) {
     .cnt-main {
-        .wrap {
-            &__left-menu {
-                &__header {
-                    padding: 33px 30px 35px 90px;
-                    &_logo {
-                        &::before {
+        .content {
+            .content-body {
+                .wrapper-post { 
+                    &__item {
+                        display: flex;
+                        &_icon {
+                            order: 1;
+                            top: -25px;
+                            left: -46px;
+                            min-width: 25px;
+                            width: 25px;
+                            height: 25px;
+                        }
+                        &__text {
+                            order: 2;
+                            margin-left: 0;
+                            margin-right: 0;
+                        }
+                        &__time {
+                            align-self: center;
+                            font-size: 12px;
                         }
                     }
                 }
@@ -260,8 +284,50 @@ $yellow: #FFC200;
         }
     }
 }
+
+@media screen and (max-width: 401px){
+    .cnt-main {
+        .wrap {
+            &__left-menu {
+                &__header {
+                    padding: 33px 30px 35px 90px;
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 362px) {
     h1 {
         font-size: 19px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .cnt-main {
+        .content {
+            .content-body {
+                .wrapper-post { 
+                    &__item {
+                        display: flex;
+                        &_icon {
+                            order: 1;
+                            left: -46px;
+                            min-width: 25px;
+                            width: 25px;
+                            height: 25px;
+                        }
+                        &__text {
+                            order: 2;
+                            margin-left: 0;
+                            margin-right: 0;
+                        }
+                        &__time {
+                            
+                        }
+                    }
+                }
+            }
+        }
     }
 }

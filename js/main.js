@@ -7,3 +7,4 @@ btn.onclick = function (e) {
         element.classList.add("show-block");
     }
 }
+
