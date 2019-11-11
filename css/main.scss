@@ -17,7 +17,6 @@ $title-menu: #878787;
 $coral: #ff7f50;
 
 body,html {
-    max-height: 100%;
     font-family: 'Open Sans',  Helvetica, sans-serif;
 }
 .f12 {font-size: 12px; }
@@ -38,7 +37,8 @@ h1 {
     display: flex;
     .wrap {
         &__left-menu {
-            height: 100%;
+            min-height: calc(100% + 130px);
+            height: 100vh;
             width: 270px;
             background-color: $black;
     
@@ -149,24 +149,47 @@ h1 {
                 display: flex;
                 align-items: center;
                 &_completed-tasks {
-                    padding-right: 17px;
+                    cursor: pointer;
+                    margin-right: 17px;
                     .wrap--tasks_completed-tasks__count {
                         color: $white;
                         margin-bottom: 5px;
+                        transition: all 0.3s ease-in-out;
                     }
                     .wrap--tasks_completed-tasks__title {
                         color: $gray;
+                        transition: all 0.3s ease-in-out;
+                    }
+
+                    &:hover {
+                        .wrap--tasks_completed-tasks__count {
+                            color: $gray; 
+                        }
+                        .wrap--tasks_completed-tasks__title {
+                            color: $white;
+                        }
                     }
                 }
                 &_open-tasks {
                     .wrap--tasks_open-tasks__count {
                         color: $white;
                         margin-bottom: 5px;
+                        transition: all 0.3s ease-in-out;
                     }
                     .wrap--tasks_open-tasks__title {
                         color: $gray;
+                        transition: all 0.3s ease-in-out;
                     }
     
+                    &:hover {
+                        cursor: pointer;
+                        .wrap--tasks_open-tasks__count {
+                            color: $gray; 
+                        }
+                        .wrap--tasks_open-tasks__title {
+                            color: $white;
+                        }
+                    }
                 }
             }
     
@@ -384,7 +407,8 @@ h1 {
         }
 
         .content-body {
-            height: calc(100vh - 132px);
+            min-height: 100%;
+            // height: calc(100vh - 132px);
             background-color: $bg-content;
             padding: 30px 30px 87px;
             box-sizing: border-box;

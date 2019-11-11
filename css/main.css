@@ -1,5 +1,4 @@
 body, html {
-  max-height: 100%;
   font-family: 'Open Sans',  Helvetica, sans-serif;
 }
 
@@ -47,7 +46,8 @@ h1 {
 }
 
 .cnt-main .wrap__left-menu {
-  height: 100%;
+  min-height: calc(100% + 130px);
+  height: 100vh;
   width: 270px;
   background-color: #000000;
 }
@@ -191,25 +191,54 @@ h1 {
 }
 
 .cnt-main .wrap__left-menu__tasks_completed-tasks {
-  padding-right: 17px;
+  cursor: pointer;
+  margin-right: 17px;
 }
 
 .cnt-main .wrap__left-menu__tasks_completed-tasks .wrap--tasks_completed-tasks__count {
   color: #ffffff;
   margin-bottom: 5px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .cnt-main .wrap__left-menu__tasks_completed-tasks .wrap--tasks_completed-tasks__title {
   color: #9B9B9B;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.cnt-main .wrap__left-menu__tasks_completed-tasks:hover .wrap--tasks_completed-tasks__count {
+  color: #9B9B9B;
+}
+
+.cnt-main .wrap__left-menu__tasks_completed-tasks:hover .wrap--tasks_completed-tasks__title {
+  color: #ffffff;
 }
 
 .cnt-main .wrap__left-menu__tasks_open-tasks .wrap--tasks_open-tasks__count {
   color: #ffffff;
   margin-bottom: 5px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .cnt-main .wrap__left-menu__tasks_open-tasks .wrap--tasks_open-tasks__title {
   color: #9B9B9B;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.cnt-main .wrap__left-menu__tasks_open-tasks:hover {
+  cursor: pointer;
+}
+
+.cnt-main .wrap__left-menu__tasks_open-tasks:hover .wrap--tasks_open-tasks__count {
+  color: #9B9B9B;
+}
+
+.cnt-main .wrap__left-menu__tasks_open-tasks:hover .wrap--tasks_open-tasks__title {
+  color: #ffffff;
 }
 
 .cnt-main .wrap__left-menu .wrap--left-menu__menu-list {
@@ -496,7 +525,7 @@ h1 {
 }
 
 .cnt-main .content .content-body {
-  height: calc(100vh - 132px);
+  min-height: 100%;
   background-color: #eeebe5;
   padding: 30px 30px 87px;
   -webkit-box-sizing: border-box;

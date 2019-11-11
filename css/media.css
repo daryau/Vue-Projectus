@@ -4,7 +4,7 @@
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1005px) {
   .burger {
     -webkit-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
