@@ -1,6 +1,5 @@
 $gray: #9B9B9B;
 $yellow: #FFC200;
-
 @media screen and (max-width: 1060px) {
     .cnt-main {
         .content {
@@ -24,56 +23,54 @@ $yellow: #FFC200;
         border-radius: 5px;
         z-index: 4;
         cursor: pointer;
+        span {
+            display: block;
+            width: 30px;
+            height: 2px;
+            border-radius: 5px;
+            background: $gray;
+            transition: all .5s ease-in-out;
+        }
+        span:nth-child(2) {
+            display: block;
+            position: absolute;
+            top: 10px;
+            width: 30px;
+            height: 2px;
+            border-radius: 5px;
+            background: $gray;
+        }
+        span:nth-child(3) {
+            display: block;
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            top: 17px;
+            border-radius: 5px;
+            background: $gray;
+        }
+        span:nth-child(4) {
+            display: block;
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            top: 24px;
+            border-radius: 5px;
+            background: $gray;
+        }
+        &:hover {
+            border: 1px solid $yellow;
             span {
-                display: block;
-                width: 30px;
-                height: 2px;
-                border-radius: 5px;
-                background: $gray;
-                transition: all .5s ease-in-out;
-
+                background: $yellow;
             }
-            span:nth-child(2) {
-                display: block;
-                position: absolute;
-                top: 10px;
-                width: 30px;
-                height: 2px;
-                border-radius: 5px;
-                background: $gray;
-            }
-            span:nth-child(3) {
-                display: block;
-                position: absolute;
-                width: 30px;
-                height: 2px;
-                top: 17px;
-                border-radius: 5px;
-                background: $gray;
-            }
-            span:nth-child(4) {
-                display: block;
-                position: absolute;
-                width: 30px;
-                height: 2px;
-                top: 24px;
-                border-radius: 5px;
-                background: $gray;
-            }
-            &:hover {
-                border: 1px solid $yellow;
-                span {
-                    background: $yellow;
-                }
-            }
+        }
     }
-      .show-block {
+    .show-block {
         display: block !important;
-      }
-      .show-burger {
-          display: none;
-      }
-
+    }
+    .show-burger {
+        display: none;
+    }
     .f16 {
         font-size: 14px;
     }
@@ -90,14 +87,13 @@ $yellow: #FFC200;
             right: 0;
             left: 0;
             z-index: 2;
-
             &__header {
                 padding: 47px 40px 35px 90px;
             }
             &__left-menu {
                 width: 100%;
                 &__header {
-                    padding:47px 30px 35px 90px;
+                    padding: 47px 30px 35px 90px;
                     &_logo {
                         padding-left: 25px;
                         &::before {
@@ -112,21 +108,20 @@ $yellow: #FFC200;
             .header {
                 &-logo {
                     &__title {
-                    padding-left: 40px;
-                    &::before {
-                        top: -3px;
-                        background-size: 30px 30px;
-                        width: 30px;
-                        height: 30px;
-                        
-                    }
+                        padding-left: 40px;
+                        &::before {
+                            top: -3px;
+                            background-size: 30px 30px;
+                            width: 30px;
+                            height: 30px;
+                        }
                     }
                 }
             }
             .content-body {
                 height: 100%;
                 padding-bottom: 0;
-                .wrapper-post { 
+                .wrapper-post {
                     &__item {
                         margin: 25px 5px;
                     }
@@ -142,20 +137,24 @@ $yellow: #FFC200;
                                 width: 100%;
                                 height: 200px;
                                 margin-top: 15px;
+                                margin-right: 0;
                             }
                             &_img:nth-child(2) {
                                 width: 100%;
                                 height: 200px;
                                 margin-top: 15px;
+                                margin-right: 0;
                             }
                             &_img:nth-child(3) {
                                 width: 100%;
                                 height: 200px;
                                 margin-top: 15px;
+                                margin-right: 0;
                             }
                             &_img:nth-child(4) {
                                 width: 100%;
                                 height: 200px;
+                                margin-right: 0;
                             }
                         }
                     }
@@ -188,9 +187,22 @@ $yellow: #FFC200;
                     }
                 }
             }
+            .content-body {
+                .wrapper-post {
+                    &__item {
+                        margin-left: 0;
+                        margin-right: 0;
+                    }
+                    &__item:nth-child(6) {
+                        margin-left: 0;
+                        margin-right: 0;
+                    }
+                }
+            }
         }
     }
-} 
+}
+
 @media screen and (max-width: 700px) {
     .logo {
         width: 70%;
@@ -201,7 +213,7 @@ $yellow: #FFC200;
     .cnt-main {
         .content {
             .content-body {
-                .wrapper-post { 
+                .wrapper-post {
                     &__item {
                         margin: 25px 5px;
                         margin-left: 0;
@@ -210,7 +222,6 @@ $yellow: #FFC200;
                             margin: 0 2% 0 3%;
                         }
                     }
-
                     &__item:nth-child(6) {
                         margin-left: 0;
                         margin-right: 0;
@@ -222,13 +233,13 @@ $yellow: #FFC200;
             }
         }
     }
-}   
+}
 
-@media screen and (max-width: 430px) { 
+@media screen and (max-width: 430px) {
     .cnt-main {
         .content {
             .content-body {
-                .wrapper-post { 
+                .wrapper-post {
                     &__item:nth-child(4) {
                         .wrapper-post__item__text {
                             padding: 10px 15px;
@@ -239,26 +250,27 @@ $yellow: #FFC200;
         }
     }
 }
+
 @media screen and (max-width: 415px) {
     .cnt-main {
         .content {
             .nav {
-                .menu-list{
+                .menu-list {
                     justify-content: center;
                     &__item:nth-child(1) {
                         padding-left: 12px;
                     }
                 }
-            } 
+            }
         }
     }
-} 
+}
 
 @media screen and (max-width: 410px) {
     .cnt-main {
         .content {
             .content-body {
-                .wrapper-post { 
+                .wrapper-post {
                     &__item {
                         display: flex;
                         &_icon {
@@ -285,7 +297,7 @@ $yellow: #FFC200;
     }
 }
 
-@media screen and (max-width: 401px){
+@media screen and (max-width: 401px) {
     .cnt-main {
         .wrap {
             &__left-menu {
@@ -307,7 +319,7 @@ $yellow: #FFC200;
     .cnt-main {
         .content {
             .content-body {
-                .wrapper-post { 
+                .wrapper-post {
                     &__item {
                         display: flex;
                         &_icon {
@@ -322,9 +334,7 @@ $yellow: #FFC200;
                             margin-left: 0;
                             margin-right: 0;
                         }
-                        &__time {
-                            
-                        }
+                        &__time {}
                     }
                 }
             }
