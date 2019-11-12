@@ -435,14 +435,16 @@ h1 {
                         height: 40px;
                         border-radius: 50%;
                         position: relative;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
                         &::before {
                             content: '';
-                            position: absolute;
+                            display: block;
                             background-image:  url('../img/Icon@3x.svg');
-                            background-size: 12px 9px;
+                            background-size: contain;
                             background-repeat: no-repeat;
-                            left: calc(50% - 6px);
-                            top: calc(50% - 4px);
+                            background-position: center;
                             width: 12px;
                             height: 9px;
                         }
@@ -467,6 +469,9 @@ h1 {
                         background: $chat;
                             &::before {
                             background-image:  url('../img/Message.svg');
+                            background-size: contain;
+                            width: 20px;
+                            height: 15px;
                         }
                     }
                 }
@@ -486,6 +491,9 @@ h1 {
                         background: $light-blue;
                             &::before {
                             background-image:  url('../img/Download.svg');
+                            background-size: contain;
+                            width: 20px;
+                            height: 15px;
                         }
                     }
                 }

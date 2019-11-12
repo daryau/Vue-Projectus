@@ -280,6 +280,10 @@ $yellow: #FFC200;
                             min-width: 25px;
                             width: 25px;
                             height: 25px;
+                            &::before {
+                                width: 15px;
+                                height: 11px;
+                            }
                         }
                         &__text {
                             order: 2;
@@ -289,6 +293,22 @@ $yellow: #FFC200;
                         &__time {
                             align-self: center;
                             font-size: 12px;
+                        }
+                    }
+                    &__item:nth-child(3){
+                        .wrapper-post__item_icon{
+                                &::before {
+                                width: 15px;
+                                height: 12px;
+                            }
+                        }
+                    }
+                    &__item:nth-child(5){
+                        .wrapper-post__item_icon{
+                                &::before {
+                                width: 15px;
+                                height: 12px;
+                            }
                         }
                     }
                 }

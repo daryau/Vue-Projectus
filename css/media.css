@@ -236,6 +236,10 @@
     width: 25px;
     height: 25px;
   }
+  .cnt-main .content .content-body .wrapper-post__item_icon::before {
+    width: 15px;
+    height: 11px;
+  }
   .cnt-main .content .content-body .wrapper-post__item__text {
     -webkit-box-ordinal-group: 3;
         -ms-flex-order: 2;
@@ -248,6 +252,14 @@
         -ms-grid-row-align: center;
         align-self: center;
     font-size: 12px;
+  }
+  .cnt-main .content .content-body .wrapper-post__item:nth-child(3) .wrapper-post__item_icon::before {
+    width: 15px;
+    height: 12px;
+  }
+  .cnt-main .content .content-body .wrapper-post__item:nth-child(5) .wrapper-post__item_icon::before {
+    width: 15px;
+    height: 12px;
   }
 }
 

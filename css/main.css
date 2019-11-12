@@ -571,16 +571,24 @@ h1 {
   height: 40px;
   border-radius: 50%;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .cnt-main .content .content-body .wrapper-post__item_icon::before {
   content: '';
-  position: absolute;
+  display: block;
   background-image: url("../img/Icon@3x.svg");
-  background-size: 12px 9px;
+  background-size: contain;
   background-repeat: no-repeat;
-  left: calc(50% - 6px);
-  top: calc(50% - 4px);
+  background-position: center;
   width: 12px;
   height: 9px;
 }
@@ -608,6 +616,9 @@ h1 {
 
 .cnt-main .content .content-body .wrapper-post__item:nth-child(3) .wrapper-post__item_icon::before {
   background-image: url("../img/Message.svg");
+  background-size: contain;
+  width: 20px;
+  height: 15px;
 }
 
 .cnt-main .content .content-body .wrapper-post__item:nth-child(4) .wrapper-post__item__text {
@@ -626,6 +637,9 @@ h1 {
 
 .cnt-main .content .content-body .wrapper-post__item:nth-child(5) .wrapper-post__item_icon::before {
   background-image: url("../img/Download.svg");
+  background-size: contain;
+  width: 20px;
+  height: 15px;
 }
 
 .cnt-main .content .content-body .wrapper-post__item:nth-child(6) {
