@@ -127,7 +127,7 @@ $yellow: #FFC200;
                     }
                     &__item:nth-child(4) {
                         .wrapper-post__item__text {
-                            margin: 0;
+                            margin: 0 20% 0 10%;
                         }
                     }
                     &__item:nth-child(6) {
@@ -207,6 +207,21 @@ $yellow: #FFC200;
     .logo {
         width: 70%;
     }
+
+    .cnt-main {
+        .content {
+            .content-body {
+                .wrapper-post {
+                    &__item:nth-child(4) {
+                        .wrapper-post__item__text {
+                            margin: 0 20% 0 12%;
+                        }
+                    }
+                }
+            }
+        }
+    }        
+
 }
 
 @media screen and (max-width: 530px) {
@@ -242,7 +257,8 @@ $yellow: #FFC200;
                 .wrapper-post {
                     &__item:nth-child(4) {
                         .wrapper-post__item__text {
-                            padding: 10px 15px;
+                            padding: 15px 20px;
+                            margin: 0 20% 0 15%;
                         }
                     }
                 }
@@ -303,6 +319,11 @@ $yellow: #FFC200;
                             }
                         }
                     }
+                    &__item:nth-child(4) {
+                        .wrapper-post__item__text {
+                            margin: 0 0 0 25%;
+                        }
+                    }
                     &__item:nth-child(5){
                         .wrapper-post__item_icon{
                                 &::before {
@@ -332,6 +353,23 @@ $yellow: #FFC200;
 @media screen and (max-width: 362px) {
     h1 {
         font-size: 19px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .cnt-main {
+        .content {
+            .content-body {
+                .wrapper-post {
+                    &__item:nth-child(4) {
+                        .wrapper-post__item__text {
+                            padding: 15px 15px;
+                            margin: 0 0 0 30%;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
