@@ -16,9 +16,7 @@ $orange-color: #FFC200;
 $title-menu: #878787;
 $coral: #ff7f50;
 
-body,html {
-    font-family: 'Open Sans',  Helvetica, sans-serif;
-}
+body,html { font-family: 'Open Sans',  Helvetica, sans-serif; }
 .f12 {font-size: 12px; }
 .f13 {font-size: 13px; }
 .f14 {font-size: 14px; }
@@ -31,7 +29,7 @@ h1 {
 }
 .uppercase { text-transform: uppercase; }
 .block {display: block; }
-
+.burger { display: none; }
 .cnt-main {
     height: 100vh;
     display: flex;
@@ -498,6 +496,7 @@ h1 {
                         margin: auto;
                         width: 500px;
                         display: flex;
+                        cursor: pointer;
                         &_img {
                             background: url('../img/post-bg.jpg') no-repeat;
                             background-size: cover;
@@ -505,6 +504,15 @@ h1 {
                             height: 100px;
                             border-radius: 8px;
                             margin-right: 10px;
+                            -webkit-transition: all 1s ease;
+                            -moz-transition: all 1s ease;
+                            -o-transition: all 1s ease;
+                            -ms-transition: all 1s ease;
+                            transition: all 1s ease;
+
+                            &:hover {
+                                opacity: 0.6;
+                            }
                         }
                         &_img:nth-child(2) {
                             background: url('../img/post-bg-2.jpg') no-repeat;
@@ -533,9 +541,4 @@ h1 {
         }
     
     }
-}
-
-
-.burger {
-    display: none; 
 }
