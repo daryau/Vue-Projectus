@@ -21,8 +21,8 @@ function burger() {
 function tasks() {
     document.querySelector('.wrap__left-menu__tasks_completed-tasks')
         .addEventListener('click', () => {
-            confirm("Are you sure you want to change the number of tasks?") ? openTasks.innerHTML > 0 ?
-                (completedTasks.innerHTML++ , openTasks.innerHTML--) : alert("Sorry! You don't have open tasks.") : null;
+            confirm("Are you sure you want to change the number of tasks?") ? openTasks.textContent > 0 ?
+                (completedTasks.textContent++ , openTasks.textContent--) : alert("Sorry! You don't have open tasks.") : null;
         });
 };
 
