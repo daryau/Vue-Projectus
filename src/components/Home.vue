@@ -1,31 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Projectusis a blog that shares useful information about web develop." />
-    <meta name="keywords" content="web task, web development, hone task" />
-
-    <title>Front-End-Test</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/media.css">
-
-</head>
-
-<body>
+<template>
     <div class="cnt-main">
         <div class="wrap show-burger">
 
             <div class="wrap__left-menu">
                 <div class="wrap__left-menu__header">
-                    <a href="#" class="wrap__left-menu__header_logo uppercase f16">Projectus</a>
-
+                    <a href="#" class="wrap__left-menu__header_logo uppercase f16">{{companyName}}</a>
                     <div class="search-form"></div>
                 </div>
 
@@ -33,8 +12,8 @@
                     <div class="wrap--profile-info">
                         <div class="wrap--profile-info__photo"></div>
                         <div class="wrap--profile-info__text">
-                            <span class="wrap--profile-info__text_name f14 block">Jean Gonzales</span>
-                            <span class="wrap--profile-info__text_type f12 block">Product Owner</span>
+                            <span class="wrap--profile-info__text_name f14 block">{{user.userFullName}}</span>
+                            <span class="wrap--profile-info__text_type f12 block">{{user.kindOfPositiom}}</span>
                         </div>
                     </div>
                     <ul class="wrap_left-menu__profile__more">
@@ -45,12 +24,12 @@
                 </div>
 
                 <div class="wrap__left-menu__tasks">
-                    <div class="wrap__left-menu__tasks_completed-tasks">
-                        <span class="wrap--tasks_completed-tasks__count f20 block" id="completedTasks">372</span>
+                    <div v-on:click="closeTasks" class="wrap__left-menu__tasks_completed-tasks">
+                        <span class="wrap--tasks_completed-tasks__count f20 block" id="completedTasks">{{tasks.countCompleted}}</span>
                         <span class="wrap--tasks_completed-tasks__title f12 block">Completed Tasks</span>
                     </div>
                     <div class="wrap__left-menu__tasks_open-tasks">
-                        <span class="wrap--tasks_open-tasks__count f20 block" id="openTasks">11</span>
+                        <span class="wrap--tasks_open-tasks__count f20 block" id="openTasks">{{tasks.countOpen}}</span>
                         <span class="wrap--tasks_open-tasks__title f12 block">Open Tasks</span>
                     </div>
                 </div>
@@ -65,7 +44,7 @@
                     </li>
                     <li class="wrap--left-menu__menu-list_item">
                         <a href="#" class="wrap--left-menu__menu-list_item__link f14">Notifications
-                            <span class="count f13" id="notifications">3</span>
+                            <span class="count f13" id="notifications">{{countNotifications}}</span>
                         </a>
                     </li>
                 </ul>
@@ -86,7 +65,7 @@
                     <span></span>
                 </div>
                 <div class="header-logo">
-                    <h1 class="header-logo__title">Website Redesign</h1>
+                    <h1 class="header-logo__title">{{titleTasks}}</h1>
                     <div class="header__dots" id="id1">
                         <ul class="header__dots_cnt">
                             <li class="dot"></li>
@@ -112,13 +91,13 @@
             <nav class="nav">
                 <ul class="menu-list">
                     <li class="menu-list__item">
-                        <a href="#" class="f16 menu-list__item__link">Tasks</a>
+                        <router-link class="f16 menu-list__item__link" exact to="/Tasks" active-class="is-active">Tasks</router-link>
                     </li>
                     <li class="menu-list__item">
                         <a href="#" class="f16 menu-list__item__link">Kanban</a>
                     </li>
                     <li class="menu-list__item">
-                        <a href="#" class="f16 menu-list__item__link is-active">Activity</a>
+                        <router-link class="f16 menu-list__item__link" to="/Activity" active-class="is-active">Activity</router-link>
                     </li>
                     <li class="menu-list__item">
                         <a href="#" class="f16 menu-list__item__link">Calendar</a>
@@ -128,47 +107,43 @@
                     </li>
                 </ul>
             </nav>
-
             <div class="content-body">
-                <div class="wrapper-post">
-                    <span class="wrapper-post__day block f14 uppercase">Today</span>
-                    <div class="wrapper-post__item">
-                        <div class="wrapper-post__item_icon"></div>
-                        <span class="wrapper-post__item__text f16 block">Darika Samak mark as done Listing on Product Hunt so that we can reach as many potential users</span>
-                        <span class="wrapper-post__item__time f14">8:40 PM</span>
-                    </div>
-
-                    <div class="wrapper-post__item">
-                        <div class="wrapper-post__item_icon"></div>
-                        <span class="wrapper-post__item__text f16 block">Emilee Simchenko commented on Account for teams and personal in bottom style</span>
-                        <span class="wrapper-post__item__time f14">7:32 PM</span>
-                    </div>
-
-                    <div class="wrapper-post__item">
-                        <span class="wrapper-post__item__text f15 block">During a project build, it is necessary to evaluate the product design and development against project
-                            requirements and outcomes</span>
-                    </div>
-
-                    <div class="wrapper-post__item">
-                        <div class="wrapper-post__item_icon"></div>
-                        <span class="wrapper-post__item__text f16 block">Darika Samak uploaded 4 files on An option to search in current projects or in all projects</span>
-                        <span class="wrapper-post__item__time f14">6:02 PM</span>
-                    </div>
-
-                    <div class="wrapper-post__item">
-                        <div class="wrapper-post__item__photos">
-                            <div class="wrapper-post__item__photos_img"></div>
-                            <div class="wrapper-post__item__photos_img"></div>
-                            <div class="wrapper-post__item__photos_img"></div>
-                            <div class="wrapper-post__item__photos_img"></div>
-                        </div>
-                    </div>
-                </div>
+                <router-view/>
             </div>
         </div>
     </div>
+</template>
 
-    <script src="js/main.js"></script>
-</body>
 
-</html>
+<script>
+export default {
+  name: "home",
+  data() {
+    return {
+      companyName: "Projectus",
+      user: {
+        userFullName: "Jean Gonzales",
+        kindOfPositiom: "Product Owner"
+      },
+
+      tasks: {
+          countCompleted: 372,
+          countOpen: 11
+      },
+
+      countNotifications: 3,
+      titleTasks: 'Website Redesign'
+    };
+  },
+
+    methods: {
+        closeTasks() {
+            if(confirm("Are you sure you want to change the number of tasks?") == true) {
+                if(this.tasks.countOpen != 0) { this.tasks.countCompleted++; this.tasks.countOpen--; }
+                else {alert("Sorry! You don't have open tasks.");}
+            }
+        },
+    }
+
+};
+</script>

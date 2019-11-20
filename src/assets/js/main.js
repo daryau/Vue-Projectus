@@ -34,5 +34,4 @@ function countNotifications() {
             notifications.innerHTML = arrayElement.indexOf(e.target);
         });
     }
-
-}
+};
