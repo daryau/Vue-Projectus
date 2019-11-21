@@ -7,6 +7,10 @@ export default new Router ({
     mode: 'history',
     routes: [
         {
+            path: '/',
+            redirect: 'tasks'
+        },
+        {
             path: '/tasks',
             component: () => import('./views/Tasks.vue')
         },

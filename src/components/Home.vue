@@ -44,7 +44,7 @@
                     </li>
                     <li class="wrap--left-menu__menu-list_item">
                         <a href="#" class="wrap--left-menu__menu-list_item__link f14">Notifications
-                            <span class="count f13" id="notifications">{{countNotifications}}</span>
+                            <span v-on:click="countNotifications" class="count f13" id="notifications">{{countNotifications}}</span>
                         </a>
                     </li>
                 </ul>
@@ -58,7 +58,7 @@
                 <i></i>
             </span>
             <header class="header">
-                <div class="burger">
+                <div v-on:click="burger" class="burger">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -143,6 +143,19 @@ export default {
                 else {alert("Sorry! You don't have open tasks.");}
             }
         },
+        burger() {
+            this.contains("show-block") ? this.remove("show-block") :
+            this.add("show-block");
+        },
+
+        // countNotifications() {
+        //     for (i = 0; i < arrPhoto.length; i++) {
+        //         arrayElement.push(arrPhoto[i]);
+        //         arrPhoto[i].addEventListener('click', (e) => {
+        //             this.notifications = arrayElement.indexOf(e.target);
+        //         });
+        //     }
+        // }
     }
 
 };
