@@ -109,6 +109,7 @@
             </nav>
             <div class="content-body">
                 <router-view/>
+                
             </div>
         </div>
     </div>
@@ -132,16 +133,16 @@ export default {
       },
 
       countNotifications: 3,
-      titleTasks: 'Website Redesign'
+      titleTasks: 'Website Redesign',
+      conter: 0
     };
   },
 
     methods: {
         closeTasks() {
-            if(confirm("Are you sure you want to change the number of tasks?") == true) {
-                if(this.tasks.countOpen != 0) { this.tasks.countCompleted++; this.tasks.countOpen--; }
-                else {alert("Sorry! You don't have open tasks.");}
-            }
+            if(this.tasks.countOpen != 0) {
+                if(confirm("Are you sure you want to change the number of tasks?") == true) { this.tasks.countCompleted++; this.tasks.countOpen--; }
+            } 
         },
         burger() {
             this.contains("show-block") ? this.remove("show-block") :

@@ -43,6 +43,7 @@ export default {
             taskDate: 'Tomorrow',
             taskItem: 
             {
+                icon: 'wrapper-post__item_icon',
                 description: 'Samanta Kwin write and publish an article about our team', 
                 time: '5:40'
             },
