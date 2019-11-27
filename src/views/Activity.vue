@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper-post">    
+    <div class="wrapper-post">
         <span class="wrapper-post__day block f14 uppercase">{{activityDate}}</span>
         <div class="wrapper-post__item">
             <div class="wrapper-post__item_icon"></div>
@@ -35,30 +35,29 @@
 </template>
 
 
-
 <script>
 export default {
-    name: 'Activity',
-    data() {
-        return {
-            activityDate: 'Today',
-            activityItem: 
+  name: 'Activity',
+  data() {
+    return {
+      activityDate: 'Today',
+      activityItem:
             {
-                icon: 'wrapper-post__item_icon',
-                description: 'Darika Samak mark as done Listing on Product Hunt so that we can reach as many potential users', 
-                time: '8:40'
+              icon: 'wrapper-post__item_icon',
+              description: 'Darika Samak mark as done Listing on Product Hunt so that we can reach as many potential users',
+              time: '8:40',
             },
 
-             activityItemTwo:{
-                description: 'Emilee Simchenko commented on Account for teams and personal in bottom style', 
-                time: '7:32', 
-                comment:'During a project build, it is necessary to evaluate the product design and development against project requirements and outcomes'
-                },
-             activityItemThird:{
-                description: 'Darika Samak uploaded 4 files on An option to search in current projects or in all projects', 
-                time: '6:02'
-            },
-        };
-    }
+      activityItemTwo: {
+        description: 'Emilee Simchenko commented on Account for teams and personal in bottom style',
+        time: '7:32',
+        comment: 'During a project build, it is necessary to evaluate the product design and development against project requirements and outcomes',
+      },
+      activityItemThird: {
+        description: 'Darika Samak uploaded 4 files on An option to search in current projects or in all projects',
+        time: '6:02',
+      },
+    };
+  },
 };
 </script>
