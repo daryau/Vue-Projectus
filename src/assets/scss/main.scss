@@ -19,6 +19,9 @@ $title-menu: #878787;
 $coral: #ff7f50;
 $is-active: #FFC200;
 
+.exact {
+    color: red !important;
+}
 body,html { font-family: 'Open Sans',  Helvetica, sans-serif; }
 .f12 {font-size: 12px; }
 .f13 {font-size: 13px; }
@@ -29,6 +32,10 @@ body,html { font-family: 'Open Sans',  Helvetica, sans-serif; }
 
 h1 {
     font-size: 32px;
+}
+
+.router-link-active {
+    color: $orange-color !important;
 }
 
 .center {text-align: center;}
