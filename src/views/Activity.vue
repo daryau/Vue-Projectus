@@ -27,14 +27,9 @@
 
         <div class="wrapper-post__item">
             <div class="wrapper-post__item__photos">
-                <img class="wrapper-post__item__photos_img" src = "../assets/images/post-bg.jpg"
-                alt="Image">
-                <img class="wrapper-post__item__photos_img" src = "../assets/images/post-bg-2.jpg"
-                alt="Image">
-                <img class="wrapper-post__item__photos_img" src = "../assets/images/post-bg-3.jpg"
-                alt="Image">
-                <img class="wrapper-post__item__photos_img" src = "../assets/images/post-bg-4.jpeg"
-                alt="Image">
+                <img class="wrapper-post__item__photos_img" v-for = "photo in images"
+                :key="photo.image"
+                :src="photo.image">
             </div>
         </div>
     </div>
@@ -63,6 +58,12 @@ export default {
         description: 'Darika Samak uploaded 4 files on An option to search in current projects or in all projects',
         time: '6:02',
       },
+      images: [
+        { image: require('@/assets/images/post-bg.jpg') }, // eslint-disable-line global-require
+        { image: require('@/assets/images/post-bg-2.jpg') }, // eslint-disable-line global-require
+        { image: require('@/assets/images/post-bg-3.jpg') }, // eslint-disable-line global-require
+        { image: require('@/assets/images/post-bg-4.jpeg') }, // eslint-disable-line global-require
+      ],
     };
   },
 };

@@ -35,6 +35,7 @@
                 alt="Image">
             </div>
         </div>
+
     </div>
 </template>
 
@@ -61,8 +62,6 @@ export default {
         description: 'Samanta Kwin uploaded 4 files on An option to search in current projects or in all projects',
         time: '2:22',
       },
-
-
     };
   },
 };
