@@ -19,16 +19,22 @@
 
         <div class="wrapper-post__item">
             <div class="wrapper-post__item_icon"></div>
-            <span class="wrapper-post__item__text f16 block">{{activityItemThird.description}}</span>
+            <span class="wrapper-post__item__text f16 block">
+                {{activityItemThird.description}}
+            </span>
             <span class="wrapper-post__item__time f14">{{activityItemThird.time}} PM</span>
         </div>
 
         <div class="wrapper-post__item">
             <div class="wrapper-post__item__photos">
-                <div class="wrapper-post__item__photos_img"></div>
-                <div class="wrapper-post__item__photos_img"></div>
-                <div class="wrapper-post__item__photos_img"></div>
-                <div class="wrapper-post__item__photos_img"></div>
+                <img class="wrapper-post__item__photos_img" src = "../assets/images/post-bg.jpg"
+                alt="Image">
+                <img class="wrapper-post__item__photos_img" src = "../assets/images/post-bg-2.jpg"
+                alt="Image">
+                <img class="wrapper-post__item__photos_img" src = "../assets/images/post-bg-3.jpg"
+                alt="Image">
+                <img class="wrapper-post__item__photos_img" src = "../assets/images/post-bg-4.jpeg"
+                alt="Image">
             </div>
         </div>
     </div>

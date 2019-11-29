@@ -138,14 +138,6 @@ $yellow: #FFC200;
                             &_img {
                                 margin-top: 15px;
                             }
-                            &_img:nth-child(2) {
-                                margin-top: 15px;
-                            }
-                            &_img:nth-child(3) {
-                                margin-top: 15px;
-                            }
-                            &_img:nth-child(4) {
-                            }
                         }
                     }
                 }
@@ -382,7 +374,6 @@ $yellow: #FFC200;
                             margin-left: 0;
                             margin-right: 0;
                         }
-                        &__time {}
                     }
                 }
             }

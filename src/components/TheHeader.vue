@@ -12,6 +12,7 @@
                     <span></span>
                     <span></span>
                 </div>
+                <p></p>
                 <div class="header-logo">
                     <h1 class="header-logo__title">{{titleTasks}}</h1>
                     <div class="header__dots" id="id1">
