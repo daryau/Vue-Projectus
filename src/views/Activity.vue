@@ -27,8 +27,9 @@
 
         <div class="wrapper-post__item">
             <div class="wrapper-post__item__photos">
-                <img class="wrapper-post__item__photos_img" v-for = "photo in images"
-                :key="photo.image"
+                <img v-on:click="test"
+                class="wrapper-post__item__photos_img" v-for = "(photo, index) in images"
+                :key="index"
                 :src="photo.image">
             </div>
         </div>
@@ -65,6 +66,11 @@ export default {
         { image: require('@/assets/images/post-bg-4.jpeg') }, // eslint-disable-line global-require
       ],
     };
+  },
+  methods: {
+    test() {
+      window.console.log('Click image:)');
+    },
   },
 };
 </script>
