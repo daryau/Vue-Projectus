@@ -26,7 +26,7 @@
         <div class="wrapper-post__item">
             <div class="wrapper-post__item__photos">
                 <img class="wrapper-post__item__photos_img" src = "../assets/images/post-bg.jpg"
-                alt="Image">
+                 alt="Image">
                 <img class="wrapper-post__item__photos_img" src = "../assets/images/post-bg-2.jpg"
                 alt="Image">
                 <img class="wrapper-post__item__photos_img" src = "../assets/images/post-bg-3.jpg"

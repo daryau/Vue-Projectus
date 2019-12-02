@@ -1,9 +1,7 @@
 <template>
-  <div id="app">
-    <div class="cnt-main">
-      <TheSidebar></TheSidebar>
-      <TheHeader></TheHeader>
-    </div>
+  <div class="cnt-main">
+    <TheSidebar></TheSidebar>
+    <TheHeader></TheHeader>
   </div>
 </template>
 
@@ -12,7 +10,7 @@ import TheSidebar from './components/TheSidebar.vue';
 import TheHeader from './components/TheHeader.vue';
 
 export default {
-  name: 'app',
+  name: 'theLayout',
   components: {
     TheSidebar,
     TheHeader,
