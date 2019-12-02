@@ -40,11 +40,11 @@ h1 {
 .block {display: block; }
 .burger { display: none; }
 .cnt-main {
-    height: 100vh;
+    // height: 100vh;
     display: flex;
     .wrap {
         &__left-menu {
-            min-height: calc(100% + 130px);
+            min-height: calc(100% + 132px);
             height: 100vh;
             width: 270px;
             background-color: $black;
