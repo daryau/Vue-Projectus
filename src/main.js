@@ -6,7 +6,6 @@ import './assets/scss/main.scss';
 import './assets/scss/media.scss';
 
 Vue.config.productionTip = false;
-
 new Vue({
   router,
   render: h => h(App),

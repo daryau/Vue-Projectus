@@ -27,7 +27,7 @@
 
         <div class="wrapper-post__item">
             <div class="wrapper-post__item__photos">
-                <img v-on:click="test"
+                <img v-on:click="clickPhoto(index)" alt="Photo"
                 class="wrapper-post__item__photos_img" v-for = "(photo, index) in images"
                 :key="index"
                 :src="photo.image">
@@ -38,6 +38,7 @@
 
 
 <script>
+
 export default {
   name: 'Activity',
   data() {
@@ -68,8 +69,8 @@ export default {
     };
   },
   methods: {
-    test() {
-      window.console.log('Click image:)');
+    clickPhoto(index) {
+      this.$root.$emit('notifications', index);
     },
   },
 };

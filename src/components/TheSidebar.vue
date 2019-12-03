@@ -82,7 +82,11 @@ export default {
       conter: 0,
     };
   },
-
+  created() {
+    this.$root.$on('notifications', (index) => {
+      this.countNotifications = index;
+    });
+  },
   methods: {
     closeTasks() {
       if (this.tasks.open > 0) {
