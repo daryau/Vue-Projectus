@@ -4,16 +4,16 @@
         <ul class="menu-list">
           <li class="menu-list__item">
               <router-link class="f16 menu-list__item__link"
-              exact to="/Tasks" active-class="is-active">
-                  Tasks
+              exact to="/tasks" active-class="is-active">
+                Tasks
               </router-link>
           </li>
           <li class="menu-list__item">
               <a href="#" class="f16 menu-list__item__link">Kanban</a>
           </li>
           <li class="menu-list__item">
-              <router-link class="f16 menu-list__item__link" to="/Activity"
-                          active-class="is-active">Activity
+              <router-link class="f16 menu-list__item__link" to="/activity"
+               active-class="is-active">Activity
               </router-link>
           </li>
           <li class="menu-list__item">
