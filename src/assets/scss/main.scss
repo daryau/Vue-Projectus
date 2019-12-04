@@ -30,9 +30,7 @@ h1 { font-size: 32px; }
 .center {text-align: center;}
 .uppercase { text-transform: uppercase; }
 .block {display: block; }
-.burger { display: none; }
 .cnt-main {
-    // height: 100vh;
     display: flex;
     .wrap {
         &__left-menu {
@@ -289,6 +287,7 @@ h1 { font-size: 32px; }
 
             &-share {
                 display: flex;
+                flex-wrap: wrap;
                 align-items: center;
                 justify-content: space-between;
                 &-cnt {

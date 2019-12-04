@@ -6,12 +6,6 @@
                 <i></i>
             </span>
             <header class="header">
-                <div class="burger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
                 <div class="header-logo">
                     <h1 class="header-logo__title">{{titleTasks}}</h1>
                     <div class="header__dots" id="id1">

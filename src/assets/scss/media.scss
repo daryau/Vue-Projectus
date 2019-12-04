@@ -13,64 +13,6 @@ $yellow: #FFC200;
 }
 
 @media screen and (max-width: 1005px) {
-    .burger {
-        transition: all .5s ease-in-out;
-        display: block;
-        position: relative;
-        height: 25px;
-        border: 1px solid $gray;
-        padding: 4px;
-        border-radius: 5px;
-        z-index: 4;
-        cursor: pointer;
-        span {
-            display: block;
-            width: 30px;
-            height: 2px;
-            border-radius: 5px;
-            background: $gray;
-            transition: all .5s ease-in-out;
-        }
-        span:nth-child(2) {
-            display: block;
-            position: absolute;
-            top: 10px;
-            width: 30px;
-            height: 2px;
-            border-radius: 5px;
-            background: $gray;
-        }
-        span:nth-child(3) {
-            display: block;
-            position: absolute;
-            width: 30px;
-            height: 2px;
-            top: 17px;
-            border-radius: 5px;
-            background: $gray;
-        }
-        span:nth-child(4) {
-            display: block;
-            position: absolute;
-            width: 30px;
-            height: 2px;
-            top: 24px;
-            border-radius: 5px;
-            background: $gray;
-        }
-        &:hover {
-            border: 1px solid $yellow;
-            span {
-                background: $yellow;
-            }
-        }
-    }
-    .show-block {
-        display: block !important;
-    }
-    .show-burger {
-        display: none;
-    }
     .f16 {
         font-size: 14px;
     }
@@ -82,18 +24,72 @@ $yellow: #FFC200;
         .wrap {
             transition: all .5s ease-in;
             position: absolute;
-            width: 100%;
-            height: 100%;
             right: 0;
             left: 0;
             z-index: 2;
+            .burger {
+                transition: all .5s ease-in-out;
+                display: block;
+                top: 22px;
+                left: 31px;
+                right: 0;
+                position: absolute;
+                width: 30px;
+                height: 25px;
+                border: 1px solid $gray;
+                padding: 4px;
+                border-radius: 5px;
+                z-index: 4;
+                cursor: pointer;
+                span {
+                    display: block;
+                    width: 30px;
+                    height: 2px;
+                    border-radius: 5px;
+                    background: $gray;
+                    transition: all .5s ease-in-out;
+                }
+                span:nth-child(2) {
+                    display: block;
+                    position: absolute;
+                    top: 10px;
+                    width: 30px;
+                    height: 2px;
+                    border-radius: 5px;
+                    background: $gray;
+                }
+                span:nth-child(3) {
+                    display: block;
+                    position: absolute;
+                    width: 30px;
+                    height: 2px;
+                    top: 17px;
+                    border-radius: 5px;
+                    background: $gray;
+                }
+                span:nth-child(4) {
+                    display: block;
+                    position: absolute;
+                    width: 30px;
+                    height: 2px;
+                    top: 24px;
+                    border-radius: 5px;
+                    background: $gray;
+                }
+                &:hover {
+                    border: 1px solid $yellow;
+                    span {
+                        background: $yellow;
+                    }
+                }
+            }
             &__header {
                 padding: 47px 40px 35px 90px;
             }
             &__left-menu {
                 width: 100%;
                 &__header {
-                    padding: 47px 30px 35px 90px;
+                    padding: 34px 30px 35px 90px;
                     &_logo {
                         padding-left: 25px;
                         &::before {
@@ -106,9 +102,11 @@ $yellow: #FFC200;
         .content {
             width: 100% !important;
             .header {
+                padding: 10px 30px 5px 30px;
                 &-logo {
                     &__title {
                         padding-left: 40px;
+                        margin-left: 55px;
                         &::before {
                             top: -3px;
                             background-size: 30px 30px;
@@ -120,7 +118,6 @@ $yellow: #FFC200;
             }
             .content-body {
                 height: 100%;
-                // padding-bottom: 0;
                 .wrapper-post {
                     &__item {
                         margin: 25px 5px;
@@ -192,6 +189,14 @@ $yellow: #FFC200;
 
     .cnt-main {
         .content {
+            .header {
+                justify-content: center;
+            }
+            .nav {
+                .menu-list {
+                    justify-content: center;
+                }
+            } 
             .content-body {
                 .wrapper-post {
                     &__item:nth-child(4) {
@@ -249,8 +254,11 @@ $yellow: #FFC200;
     }
 }
 
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 416px) {
     .cnt-main {
+        h1 {
+            font-size: 22px;
+        }
         .content {
             .nav {
                 .menu-list {
@@ -332,15 +340,55 @@ $yellow: #FFC200;
     }
 }
 
-@media screen and (max-width: 362px) {
-    h1 {
-        font-size: 19px;
+@media screen and (max-width: 392px) {
+    .cnt-main {
+        h1 { font-size: 19px; }
+            .content {
+                .header {
+                    &-logo {
+                        &__title {
+                            text-align: center;
+                            padding-left: 30px;
+                            margin-left: 43px;
+                            &::before {
+                                top: -4px;
+                                background-size: 25px 25px;
+                                width: 25px;
+                                height: 25px;
+                            }
+                        }
+                        .header__dots {
+                            margin-right: 0 !important;
+                        }
+                    }
+                }
+            }
     }
 }
+
+@media screen and (max-width: 362px) {
+    .cnt-main { 
+        h1 { font-size: 17px; }
+     }
+}
+
+// @media screen and (max-width: 344px) {
+//     .cnt-main {
+//             .content {
+//                 .header {
+//                     .m
+//                 }
+//             }
+//     }
+// }
 
 @media screen and (max-width: 350px) {
     .cnt-main {
         .content {
+            .header-share {
+                justify-content: center;
+                margin: 15px 0;
+            }
             .content-body {
                 .wrapper-post {
                     &__item:nth-child(4) {

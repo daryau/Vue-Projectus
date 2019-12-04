@@ -1,6 +1,12 @@
 <template>
-        <div class="wrap show-burger">
-            <div class="wrap__left-menu">
+        <div class="wrap">
+            <div class="burger" v-on:click="visible =! visible">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="wrap__left-menu"  v-if="visible">
                 <div class="wrap__left-menu__header">
                     <a href="#" class="wrap__left-menu__header_logo uppercase f16">
                      {{companyName}}</a>
@@ -42,7 +48,6 @@
                         <span class="wrap--tasks_open-tasks__title f12 block">Open Tasks</span>
                     </div>
                 </div>
-
                 <ul class="wrap--left-menu__menu-list">
                     <li class="wrap--left-menu__menu-list_item uppercase f12">Menu </li>
                     <li class="wrap--left-menu__menu-list_item">
@@ -80,6 +85,7 @@ export default {
       },
       countNotifications: 3,
       conter: 0,
+      visible: true,
     };
   },
   created() {
