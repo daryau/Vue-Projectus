@@ -1,5 +1,5 @@
-<template>
-    <TheLayout></TheLayout>
+<template lang="pug">
+  TheLayout
 </template>
 
 <script>

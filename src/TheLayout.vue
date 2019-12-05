@@ -1,8 +1,7 @@
-<template>
-  <div class="cnt-main">
-    <TheSidebar></TheSidebar>
-    <TheHeader></TheHeader>
-  </div>
+<template lang="pug">
+  .cnt-main
+    TheSidebar
+    TheHeader
 </template>
 
 <script>

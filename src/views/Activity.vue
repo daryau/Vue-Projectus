@@ -1,39 +1,27 @@
-<template>
-    <div class="wrapper-post">
-        <span class="wrapper-post__day block f14 uppercase">{{activityDate}}</span>
-        <div class="wrapper-post__item">
-            <div class="wrapper-post__item_icon"></div>
-            <span class="wrapper-post__item__text f16 block">{{activityItem.description}}</span>
-            <span class="wrapper-post__item__time f14"> {{activityItem.time}}PM</span>
-        </div>
-
-        <div class="wrapper-post__item">
-            <div class="wrapper-post__item_icon"></div>
-            <span class="wrapper-post__item__text f16 block">{{activityItemTwo.description}}</span>
-            <span class="wrapper-post__item__time f14">{{activityItemTwo.time}} PM</span>
-        </div>
-
-        <div class="wrapper-post__item">
-            <span class="wrapper-post__item__text f15 block">{{activityItemTwo.comment}}</span>
-        </div>
-
-        <div class="wrapper-post__item">
-            <div class="wrapper-post__item_icon"></div>
-            <span class="wrapper-post__item__text f16 block">
-                {{activityItemThird.description}}
-            </span>
-            <span class="wrapper-post__item__time f14">{{activityItemThird.time}} PM</span>
-        </div>
-
-        <div class="wrapper-post__item">
-            <div class="wrapper-post__item__photos">
-                <img v-on:click="clickPhoto(index)" alt="Photo"
-                class="wrapper-post__item__photos_img" v-for = "(photo, index) in images"
-                :key="index"
-                :src="photo.image">
-            </div>
-        </div>
-    </div>
+<template lang="pug">
+  .wrapper-post
+    span.wrapper-post__day.block.f14.uppercase {{activityDate}}
+    .wrapper-post__item
+      .wrapper-post__item_icon
+      span.wrapper-post__item__text.f16.block {{activityItem.description}}
+      span.wrapper-post__item__time.f14  {{activityItem.time}}PM
+    .wrapper-post__item
+      .wrapper-post__item_icon
+      span.wrapper-post__item__text.f16.block {{activityItemTwo.description}}
+      span.wrapper-post__item__time.f14 {{activityItemTwo.time}} PM
+    .wrapper-post__item
+      span.wrapper-post__item__text.f15.block {{activityItemTwo.comment}}
+    .wrapper-post__item
+      .wrapper-post__item_icon
+      span.wrapper-post__item__text.f16.block
+        | {{activityItemThird.description}}
+      span.wrapper-post__item__time.f14 {{activityItemThird.time}} PM
+    .wrapper-post__item
+      .wrapper-post__item__photos
+        img.wrapper-post__item__photos_img(v-on:click='clickPhoto(index)' alt='Photo'
+        v-for='(photo, index) in images'
+        :key='index'
+        :src='photo.image')
 </template>
 
 

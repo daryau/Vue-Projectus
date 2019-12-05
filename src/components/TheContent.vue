@@ -1,33 +1,21 @@
-<template>
-    <div>
-      <nav class="nav">
-        <ul class="menu-list">
-          <li class="menu-list__item">
-              <router-link class="f16 menu-list__item__link"
-              exact to="/tasks" active-class="is-active">
-                Tasks
-              </router-link>
-          </li>
-          <li class="menu-list__item">
-              <a href="#" class="f16 menu-list__item__link">Kanban</a>
-          </li>
-          <li class="menu-list__item">
-              <router-link class="f16 menu-list__item__link" to="/activity"
-               active-class="is-active">Activity
-              </router-link>
-          </li>
-          <li class="menu-list__item">
-              <a href="#" class="f16 menu-list__item__link">Calendar</a>
-          </li>
-          <li class="menu-list__item">
-              <a href="#" class="f16 menu-list__item__link">Files</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="content-body">
-        <router-view></router-view>
-      </div>
-      </div>
+<template lang="pug">
+div
+  nav.nav
+    ul.menu-list
+      li.menu-list__item
+        router-link.f16.menu-list__item__link(exact='' to='/tasks' active-class='is-active')
+          | Tasks
+      li.menu-list__item
+        a.f16.menu-list__item__link(href='#') Kanban
+      li.menu-list__item
+        router-link.f16.menu-list__item__link(to='/activity' active-class='is-active')
+          | Activity
+      li.menu-list__item
+        a.f16.menu-list__item__link(href='#') Calendar
+      li.menu-list__item
+        a.f16.menu-list__item__link(href='#') Files
+  .content-body
+    router-view
 </template>
 
 <script>
