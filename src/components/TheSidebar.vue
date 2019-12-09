@@ -28,7 +28,7 @@
                         | {{tasks.completed}}
                     span.wrap--tasks_completed-tasks__title.f12.block
                         | Completed Tasks
-                .wrap__left-menu__tasks_open-tasks
+                .wrap__left-menu__tasks_open-tasks(v-on:click='openTasks')
                     span.wrap--tasks_open-tasks__count.f20.block
                         | {{tasks.open}}
                     span.wrap--tasks_open-tasks__title.f12.block Open Tasks
@@ -76,6 +76,9 @@ export default {
       if (this.tasks.open > 0) {
         if (window.confirm('Are you sure you want to change the number of tasks?')) { this.tasks.completed += 1; this.tasks.open -= 1; }
       }
+    },
+    openTasks() {
+      if (this.tasks.open > 0) { this.$router.push('/activity'); }
     },
   },
 };

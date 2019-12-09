@@ -18,5 +18,17 @@ export default new Router({
       path: '/activity',
       component: () => import('./views/Activity.vue'),
     },
+    {
+      path: '/calendar',
+      component: () => import('./views/PageNotFound.vue'),
+    },
+    {
+      path: '/files',
+      component: () => import('./views/PageNotFound.vue'),
+    },
+    {
+      path: '*',
+      component: () => import('./views/PageNotFound.vue'),
+    },
   ],
 });

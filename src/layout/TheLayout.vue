@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
 import TheSidebar from '../components/TheSidebar.vue';
 import TheHeader from '../components/TheHeader.vue';
 
