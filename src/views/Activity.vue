@@ -25,40 +25,46 @@
 </template>
 
 
-<script>
+<script lang = "ts">
+import { Component, Vue } from 'vue-property-decorator';
 
-export default {
-  name: 'Activity',
-  data() {
-    return {
-      activityDate: 'Today',
-      activityItem:
-            {
-              description: 'Darika Samak mark as done Listing on Product Hunt so that we can reach as many potential users',
-              time: '8:40',
-            },
+interface ActivityInterface {
+  description: string;
+  time: string;
+  comment?: string;
+  images?: any[],
+}
 
-      activityItemTwo: {
-        description: 'Emilee Simchenko commented on Account for teams and personal in bottom style',
-        time: '7:32',
-        comment: 'During a project build, it is necessary to evaluate the product design and development against project requirements and outcomes',
-      },
-      activityItemThird: {
-        description: 'Darika Samak uploaded 4 files on An option to search in current projects or in all projects',
-        time: '6:02',
-      },
-      images: [
-        { image: require('@/assets/images/post-bg.jpg') }, // eslint-disable-line global-require
-        { image: require('@/assets/images/post-bg-2.jpg') }, // eslint-disable-line global-require
-        { image: require('@/assets/images/post-bg-3.jpg') }, // eslint-disable-line global-require
-        { image: require('@/assets/images/post-bg-4.jpeg') }, // eslint-disable-line global-require
-      ],
-    };
-  },
-  methods: {
-    clickPhoto(index) {
-      this.$root.$emit('notifications', index);
-    },
-  },
-};
+@Component
+export default class Activity extends Vue {
+  // initial data
+  activityDate: string = 'Today';
+
+  activityItem: ActivityInterface = {
+    description: 'Darika Samak mark as done Listing on Product Hunt so that we can reach as many potential users',
+    time: '8:40',
+  }
+
+  activityItemTwo: ActivityInterface = {
+    description: 'Emilee Simchenko commented on Account for teams and personal in bottom style',
+    time: '7:32',
+    comment: 'During a project build, it is necessary to evaluate the product design and development against project requirements and outcomes',
+  }
+
+  activityItemThird: ActivityInterface = {
+    description: 'Darika Samak uploaded 4 files on An option to search in current projects or in all projects',
+    time: '6:02',
+    images: [
+      './assets/images/post-bg.jpg',
+      './assets/images/post-bg-2.jpg',
+      './assets/images/post-bg-3.jpg',
+      './assets/images/post-bg-4.jpeg',
+    ],
+  }
+
+  // methods
+  clickPhoto(index: number) {
+    this.$root.$emit('notifications', index);
+  }
+}
 </script>

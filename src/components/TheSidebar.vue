@@ -94,5 +94,4 @@ export default class TheSidebar extends Vue {
       if (this.tasks.open > 0) { this.$router.push('/activity'); }
     }
 }
-
 </script>
