@@ -53,3 +53,4 @@ export default class Tasks extends Vue {
     time: '2:22',
   }
 }
+</script>
