@@ -1,4 +1,4 @@
-<template lang="pug">
+<template lang = "pug">
         .content
             span#trigger.trigger
                 i
@@ -23,16 +23,16 @@
             TheContent
 </template>
 
-<script>
+<script lang = "ts" >
+import { Component, Vue } from 'vue-property-decorator';
 import TheContent from './TheContent.vue';
 
-export default {
-  name: 'TheHeader',
-  components: { TheContent },
-  data() {
-    return {
-      titleTasks: 'Website Redesign',
-    };
+@Component({
+  components: {
+    TheContent,
   },
-};
+})
+export default class TheHeader extends Vue {
+    titleTasks: string = 'Website Redesign';
+}
 </script>

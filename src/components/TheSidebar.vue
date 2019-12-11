@@ -15,9 +15,9 @@
                     .wrap--profile-info__photo
                     .wrap--profile-info__text
                         span.wrap--profile-info__text_name.f14.block
-                            | {{user.userFullName}}
+                            | {{userFullName}}
                         span.wrap--profile-info__text_type.f12.block
-                            | {{user.kindOfPositiom}}
+                            | {{kindOfPositiom}}
             ul.wrap_left-menu__profile__more
                 li.one-dot
                 li.one-dot
@@ -46,41 +46,53 @@
 
 </template>
 
-<script>
+<script lang = "ts">
+import { Component, Vue } from 'vue-property-decorator';
 
-export default {
-  name: 'TheSidebar',
-  data() {
-    return {
-      companyName: 'Projectus',
-      user: {
-        userFullName: 'Jean Gonzales',
-        kindOfPositiom: 'Product Owner',
-      },
-      tasks: {
-        completed: 372,
-        open: 11,
-      },
-      countNotifications: 3,
-      conter: 0,
-      visible: true,
-    };
-  },
-  created() {
-    this.$root.$on('notifications', (index) => {
-      this.countNotifications = index;
-    });
-  },
-  methods: {
+interface TasksInterface {
+  completed: number;
+  open: number;
+}
+
+@Component
+export default class TheSidebar extends Vue {
+    // initial data
+    companyName: string = 'Projectus';
+
+    userFullName: string = 'Jean Gonzales';
+
+    kindOfPositiom: string = 'Product Owner';
+
+    countNotifications: number = 3;
+
+    conter: number = 0;
+
+    visible: boolean = true;
+
+    tasks: TasksInterface = {
+      completed: 372,
+      open: 11,
+    }
+
+    created() {
+      this.$root.$on('notifications', (index) => {
+        this.countNotifications = index;
+      });
+    }
+
+    // methods
     closeTasks() {
       if (this.tasks.open > 0) {
-        // eslint-disable-next-line no-alert
-        if (window.confirm('Are you sure you want to change the number of tasks?')) { this.tasks.completed += 1; this.tasks.open -= 1; }
+        if (window.confirm('Are you sure you want to change the number of tasks?')) {
+          this.tasks.completed += 1;
+          this.tasks.open -= 1;
+        }
       }
-    },
+    }
+
     openTasks() {
       if (this.tasks.open > 0) { this.$router.push('/activity'); }
-    },
-  },
-};
+    }
+}
+
 </script>
