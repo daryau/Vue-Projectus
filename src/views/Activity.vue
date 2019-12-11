@@ -34,7 +34,6 @@ export default {
       activityDate: 'Today',
       activityItem:
             {
-              icon: 'wrapper-post__item_icon',
               description: 'Darika Samak mark as done Listing on Product Hunt so that we can reach as many potential users',
               time: '8:40',
             },

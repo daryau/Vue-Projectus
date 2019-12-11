@@ -24,29 +24,32 @@
 </template>
 
 
-<script>
-export default {
-  name: 'Tasks',
-  data() {
-    return {
-      taskDate: 'Tomorrow',
-      taskItem:
-            {
-              icon: 'wrapper-post__item_icon',
-              description: 'Samanta Kwin write and publish an article about our team',
-              time: '5:40',
-            },
+<script lang="ts">
 
-      taskItemTwo: {
-        description: 'Minika Roil commented on Account for teams and personal in bottom style',
-        time: '9:32',
-        comment: 'Redesign our website, evaluate and say the timeline',
-      },
-      taskItemThird: {
-        description: 'Samanta Kwin uploaded 4 files on An option to search in current projects or in all projects',
-        time: '2:22',
-      },
-    };
-  },
-};
-</script>
+import { Component, Vue } from 'vue-property-decorator';
+
+interface TaskInterface {
+  description: string;
+  time: string;
+  comment?: string;
+}
+@Component
+export default class Tasks extends Vue {
+  taskDate:string = 'Tomorrow';
+
+  taskItem: TaskInterface = {
+    description: 'Samanta Kwin write and publish an article about our team',
+    time: '5:40',
+  }
+
+  taskItemTwo: TaskInterface = {
+    description: 'Minika Roil commented on Account for teams and personal in bottom style',
+    time: '9:32',
+    comment: 'Redesign our website, evaluate and say the timeline',
+  }
+
+  taskItemThird: TaskInterface = {
+    description: 'Samanta Kwin uploaded 4 files on An option to search in current projects or in all projects',
+    time: '2:22',
+  }
+}

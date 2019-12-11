@@ -74,6 +74,7 @@ export default {
   methods: {
     closeTasks() {
       if (this.tasks.open > 0) {
+        // eslint-disable-next-line no-alert
         if (window.confirm('Are you sure you want to change the number of tasks?')) { this.tasks.completed += 1; this.tasks.open -= 1; }
       }
     },
