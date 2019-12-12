@@ -24,7 +24,6 @@
         :src='photo.image')
 </template>
 
-
 <script lang = "ts">
 import { Component, Vue } from 'vue-property-decorator';
 
@@ -55,7 +54,7 @@ export default class Activity extends Vue {
     description: 'Darika Samak uploaded 4 files on An option to search in current projects or in all projects',
     time: '6:02',
     images: [
-      './images/post-bg.jpg',
+      './assets/images/post-bg.jpg',
       './assets/images/post-bg-2.jpg',
       './assets/images/post-bg-3.jpg',
       './assets/images/post-bg-4.jpeg',
