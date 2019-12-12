@@ -19,7 +19,7 @@
     .wrapper-post__item
       .wrapper-post__item__photos
         img.wrapper-post__item__photos_img(v-on:click='clickPhoto(index)' alt='Photo'
-        v-for='(photo, index) in images'
+        v-for='(photo, index) in activityItemThird.images'
         :key='index'
         :src='photo.image')
 </template>
@@ -55,7 +55,7 @@ export default class Activity extends Vue {
     description: 'Darika Samak uploaded 4 files on An option to search in current projects or in all projects',
     time: '6:02',
     images: [
-      './assets/images/post-bg.jpg',
+      './images/post-bg.jpg',
       './assets/images/post-bg-2.jpg',
       './assets/images/post-bg-3.jpg',
       './assets/images/post-bg-4.jpeg',
