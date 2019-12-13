@@ -384,30 +384,32 @@ h1 { font-size: 32px; }
             .menu-list {
                 display: flex;
                 flex-wrap: wrap;
+                position: relative;
                 &__item {
-                    padding: 12px 15px 12px 15px; 
-                    position: relative; 
+                    // padding: 12px 15px 12px 15px; 
+                    // position: relative; 
                     &__link {
+                        cursor: pointer;
+                        margin: 12px 15px 12px 15px; 
                         color: $count;
                         opacity: 0.7;
                         transition: all .3s ease-in;
                         position: relative;
-
+                        display: block;
                         &.is-active {
                             color: $black;
                             opacity: 1;
                             &.is-active::before {
                                 content: '';
                                 position: absolute;
-                                bottom: -10px;
+                                bottom: -12px;
                                 right: 0;
                                 left: 0;
                                 width: 100%;
                                 height: 2px;
                                 background-color: $is-active;
-                              }
+                            }
                         }
-
                         &:hover {
                             color: $black;
                             opacity: 1;
