@@ -421,7 +421,6 @@ h1 { font-size: 32px; }
                 }
             }
         }
-
         .content-body {
             min-height: 100vh;
             background-color: $bg-content;
@@ -439,7 +438,6 @@ h1 { font-size: 32px; }
                     color: $count;
                     opacity: 0.5;
                 }
-
                 &__item {
                     margin: 32px 30px 30px;
                     display: flex;
@@ -466,7 +464,6 @@ h1 { font-size: 32px; }
                             height: 9px;
                         }
                     }   
-                  
                     &__text {
                         box-sizing: border-box;
                         margin: 0 10% 0 3%;
@@ -492,7 +489,6 @@ h1 { font-size: 32px; }
                         }
                     }
                 }
-
                 &__item:nth-child(4) {
                     .wrapper-post__item__text {
                         background: $light-gray;
