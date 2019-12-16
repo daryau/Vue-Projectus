@@ -23,16 +23,11 @@
               img.wrapper-post__item__photos_img(src='../assets/images/post-bg-4.jpeg' alt='Image')
 </template>
 
-
 <script lang="ts">
 
 import { Component, Vue } from 'vue-property-decorator';
+import { TaskInterface } from '../types/TaskInterface';
 
-interface TaskInterface {
-  description: string;
-  time: string;
-  comment?: string;
-}
 @Component
 export default class Tasks extends Vue {
   taskDate:string = 'Tomorrow';

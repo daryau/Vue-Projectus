@@ -26,13 +26,7 @@
 
 <script lang = "ts">
 import { Component, Vue } from 'vue-property-decorator';
-
-interface ActivityInterface {
-  description: string;
-  time: string;
-  comment?: string;
-  images?: any[],
-}
+import { ActivityInterface } from '../types/ActivityInterface';
 
 @Component
 export default class Activity extends Vue {
@@ -53,11 +47,12 @@ export default class Activity extends Vue {
   activityItemThird: ActivityInterface = {
     description: 'Darika Samak uploaded 4 files on An option to search in current projects or in all projects',
     time: '6:02',
+
     images: [
-      './assets/images/post-bg.jpg',
-      './assets/images/post-bg-2.jpg',
-      './assets/images/post-bg-3.jpg',
-      './assets/images/post-bg-4.jpeg',
+      { image: require('@/assets/images/post-bg.jpg') }, // eslint-disable-line global-require
+      { image: require('@/assets/images/post-bg-2.jpg') }, // eslint-disable-line global-require
+      { image: require('@/assets/images/post-bg-3.jpg') }, // eslint-disable-line global-require
+      { image: require('@/assets/images/post-bg-4.jpeg') }, // eslint-disable-line global-require
     ],
   }
 
