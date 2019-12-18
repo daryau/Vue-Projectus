@@ -1,5 +1,4 @@
-interface TaskInterface {
-    description: string;
-    time: string;
-    comment?: string;
-  }
+export interface TaskInterface  {
+  title: string;
+  description: string;
+}

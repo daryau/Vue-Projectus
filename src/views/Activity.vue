@@ -26,7 +26,7 @@
 
 <script lang = "ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { ActivityInterface } from '../types/ActivityInterface';
+import { ActivityInterface } from '@/types/ActivityInterface';
 
 @Component
 export default class Activity extends Vue {
@@ -57,7 +57,7 @@ export default class Activity extends Vue {
   }
 
   // methods
-  clickPhoto(index: number) {
+  clickPhoto(index: number): void {
     this.$root.$emit('notifications', index);
   }
 }
