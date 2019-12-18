@@ -18,7 +18,8 @@ export default {
 </script>
 
 <style lang="scss">
-    @import url('https://fonts.googleapis.com/css?family=Sulphur+Point:400,500,600&display=swap');    $error:#4c4c4c;
+    @import url('https://fonts.googleapis.com/css?family=Sulphur+Point:400,500,600&display=swap');
+    $error:#4c4c4c;
     .notFound {
         background: url('../assets/images/bg-error.jpg') no-repeat;
         background-size: cover;
