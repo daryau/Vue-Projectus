@@ -105,6 +105,7 @@ export default class Tasks extends Vue {
         padding: 25px;
         background: url('../assets/images/bg-task.jpg') no-repeat;
         background-size: cover;
+        border-radius: 10px;
         &-add {
             &-title{
                 line-height: 16px;
