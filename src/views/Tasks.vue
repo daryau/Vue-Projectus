@@ -1,7 +1,7 @@
 <template lang="pug">
 .task
   .task-add
-    h3.task-title.fw500.f20.mt-3.mb-3 {{titleTask}}
+    h3.task-title.fw600.f20.mt-3.mb-3 {{titleTask}}
     form.form.task-form(v-on:submit.prevent='')
       .input-group.flex-column.mt-3.mb-3
         input.form-control(type='text' placeholder='Add task' v-model='newTask' required='')
@@ -66,11 +66,41 @@ export default class Tasks extends Vue {
 </script>
 
 <style lang="scss" scoped>
+    @import url('https://fonts.googleapis.com/css?family=Sulphur+Point:400,500,600&display=swap');
     $gray: #5b5a5a;
     $gray-light: #909090;
     $pink: #f3c5cf;
+    $pink-light: #f6c3be;
     $purple: #f088a0;
     $white: #ffffff;
+    h3 {
+        font-family: 'Sulphur Point', sans-serif;
+        color: $gray;
+        margin-left: 15px;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            background-color: $pink-light;
+            width: 15px;
+            height: 15px;
+            border-radius: 50px;
+            left: -25px;
+            top: 3px;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            background-color: $white;
+            width: 5px;
+            height: 5px;
+            border-radius: 50px;
+            top: 8px;
+            left: -20px;
+        }
+    }
     .task {
         padding: 25px;
         background: url('../assets/images/bg-task.jpg') no-repeat;
