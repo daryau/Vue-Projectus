@@ -1,21 +1,21 @@
 <template lang="pug">
 .task
   .task-add
-    h3.task-title.fw600.f20.mt-3.mb-3 {{titleTask}}
-    form.form.task-form(v-on:submit.prevent='')
-      .input-group.flex-column.mt-3.mb-3
-        input.form-control(type='text' placeholder='Add task' v-model='newTask' required='')
-        textarea.form-control.mt-3.mb-3(rows='3' placeholder='Add description'
+    h3.task-title.fw600.f20.mt-3 {{titleTask}}
+    form.task-form(v-on:submit.prevent='')
+      .form-group
+        input.form-input(type='text' placeholder='Add task' v-model='newTask' required='')
+        textarea.form-input(rows='3' placeholder='Add description'
         v-model='newDescription' required='')
         .input-group-append
-          button.btn.btn-outline-secondary.btn-submit(type='submit' v-on:click='addTask') Add
-  hr.mb-5
-  .task-list.d-flex.flex-wrap.align-items-center.justify-content-between(
+          button.btn-submit.fw400(type='submit' v-on:click='addTask') Add
+  hr
+  .task-list(
       v-for='(taskItem, index) in taskItems' :key='index')
     .task-item
-      span.task-title.block.fw600.f16.mb-3 {{taskItem.title}}
+      span.task-title.block.fw600.f16 {{taskItem.title}}
       p.task-text.f14 {{taskItem.description}}
-    .remove-task.d-flex.align-items-center.justify-content-center.f25(
+    .remove-task.f25(
         v-on:click='removeTask(index)') &times;
 </template>
 
@@ -67,17 +67,22 @@ export default class Tasks extends Vue {
 
 <style lang="scss" scoped>
     @import url('https://fonts.googleapis.com/css?family=Sulphur+Point:400,500,600&display=swap');
+
     $gray: #5b5a5a;
     $gray-light: #909090;
     $pink: #f3c5cf;
     $pink-light: #f6c3be;
     $purple: #f088a0;
     $white: #ffffff;
+    $dark-gray: #212529;
+    $lg-gray: #6c757d;
+    $br-lg-gray: #6c757d;
     h3 {
         font-family: 'Sulphur Point', sans-serif;
         color: $gray;
         margin-left: 15px;
         position: relative;
+        margin: 15px;
 
         &::before {
             content: '';
@@ -101,6 +106,8 @@ export default class Tasks extends Vue {
             left: -20px;
         }
     }
+    hr { margin-bottom: 25px; }
+
     .task {
         padding: 25px;
         background: url('../assets/images/bg-task.jpg') no-repeat;
@@ -112,17 +119,41 @@ export default class Tasks extends Vue {
                 color: $gray;
             }
             .task-form {
-                .input-group {
+                .form-group {
                     width: 195px !important;
-                    .form-control {
+                    .form-input {
+                        font-family: 'Open Sans', Helvetica, sans-serif;
                         border: none;
                         border-bottom: 1px solid $pink;
                         background: transparent;
                         border-radius: 0;
+                        margin: 15px 0;
+                        padding: 5px;
+                        height: 25px;
                     }
                     .input-group-append {
                         .btn-submit {
-                            z-index: 1;
+                            display: inline-block;
+                            color: $dark-gray;
+                            text-align: center;
+                            vertical-align: middle;
+                            cursor: pointer;
+                            background-color: transparent;
+                            border: 1px solid transparent;
+                            padding: .375rem .75rem;
+                            line-height: 1.5;
+                            border-radius: .25rem;
+                            color: $lg-gray;
+                            border-color: $lg-gray;
+                            border-top-left-radius: 0;
+                            border-bottom-left-radius: 0;
+                            transition: all .5s ease-in-out;
+                            margin-bottom: 25px;
+                                &:hover {
+                                    color: $white;
+                                    background-color: $br-lg-gray;
+                                    border-color: $br-lg-gray;
+                                }
                         }
                     }
                 }
@@ -130,6 +161,10 @@ export default class Tasks extends Vue {
         }
         .task-list {
             width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
             margin: 20px auto;
             background-color: $white;
             padding: 25px;
@@ -140,12 +175,18 @@ export default class Tasks extends Vue {
             transition: all 0.5s ease-in-out;
             .task-item {
                 width: 80%;
+                .task-title {
+                    margin-bottom: 15px;
+                }
                 .task-text {
                     color: $gray-light;
                     line-height: 20px;
                 }
             }
             .remove-task {
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 cursor: pointer;
                 background-color: $purple;
                 width: 35px;
@@ -173,7 +214,7 @@ export default class Tasks extends Vue {
         }
         .task {
             padding: 15px;
-            .task-list { width: 100%; }
+            .task-list { width: 80%; }
         }
     }
 
