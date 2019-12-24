@@ -11,10 +11,11 @@
           button.btn-submit.fw400(type='submit' v-on:click='addTask') Add
   hr
   transition-group(name='blink')
-    .task-list(v-for='(taskItem, index) in taskItems' :key='index')
+    .task-list(
+        v-for='(taskItem, index) in taskItems' :key='index')
         .task-item
-        span.task-title.block.fw600.f16 {{taskItem.title}}
-        p.task-text.f14 {{taskItem.description}}
+            span.task-title.block.fw600.f16 {{taskItem.title}}
+            p.task-text.f14 {{taskItem.description}}
         .remove-task.f25(
             v-on:click='removeTask(index)') &times;
 </template>
@@ -32,7 +33,6 @@ export default class Tasks extends Vue {
   newTask: string = '';
 
   newDescription: string = '';
-
 
   taskItems: TaskInterface[] = [
     {
@@ -109,7 +109,7 @@ export default class Tasks extends Vue {
     }
     hr { margin-bottom: 25px; }
 
-    .blink-enter-active, .blink-leave-active{
+    .blink-enter-active {
         animation: blink .3s ease-out;
         animation-iteration-count: 3;
     }
@@ -124,7 +124,6 @@ export default class Tasks extends Vue {
         background: url('../assets/images/bg-task.jpg') no-repeat;
         background-size: cover;
         border-radius: 10px;
-
         &-add {
             &-title{
                 line-height: 16px;
