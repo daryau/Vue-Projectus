@@ -110,7 +110,7 @@ export default class Tasks extends Vue {
     hr { margin-bottom: 25px; }
 
     .blink-enter-active {
-        animation: blink .3s ease-out;
+        animation: blink .2s ease-out;
         animation-iteration-count: 3;
     }
     @keyframes blink {
