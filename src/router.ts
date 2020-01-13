@@ -15,6 +15,10 @@ export default new Router({
       component: () => import('./views/Tasks.vue'),
     },
     {
+      path: '/kanban',
+      component: () => import('./views/Kanban.vue'),
+    },
+    {
       path: '/activity',
       component: () => import('./views/Activity.vue'),
     },
