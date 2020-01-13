@@ -1,5 +1,6 @@
 <template lang="pug">
 .task
+  .titleTask
   .task-add
     h3.task-title.fw600.f20.mt-3 {{titleTask}}
     form.task-form(v-on:submit.prevent='')
@@ -12,11 +13,13 @@
   hr
   transition-group(name='blink')
     .task-list(
-        v-for='(taskItem, index) in taskItems' :key='index')
+        v-for='(taskItem, index) in taskItems' :key='index' ref='todo-list')
         .task-item
-            span.task-title.block.fw600.f16 {{taskItem.title}}
-            p.task-text.f14 {{taskItem.description}}
-        .remove-task.f25(
+            .task-header
+                span.task-status.block.fw700 status
+            span.task-title.block.fw600 {{taskItem.title}}
+            p.task-text {{taskItem.description}}
+        .remove-task(
             v-on:click='removeTask(index)') &times;
 </template>
 
@@ -63,12 +66,21 @@ export default class Tasks extends Vue {
   removeTask(index: number): void {
     this.taskItems.splice(index, 1);
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  mounted() {
+    const blinkedTask = this.$refs['todo-list'] as Array<any>;
+    for (let i = 0; i < blinkedTask.length; i += 1) {
+      setTimeout(() => {
+        blinkedTask[i].classList.add('scale-text-list');
+      }, 500 * i);
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-    @import url('https://fonts.googleapis.com/css?family=Sulphur+Point:400,500,600&display=swap');
-
+    @import url('https://fonts.googleapis.com/css?family=Sulphur+Point:400,500,600,700&display=swap');
     $gray: #5b5a5a;
     $gray-light: #909090;
     $pink: #f3c5cf;
@@ -78,6 +90,24 @@ export default class Tasks extends Vue {
     $dark-gray: #212529;
     $lg-gray: #6c757d;
     $br-lg-gray: #6c757d;
+    $purple-dark: #bd11dd;
+    .fw700 {font-weight: 700;}
+
+    // animation
+    .scale-text-list {animation: scale-text-list-animation 1s;}
+    .blink-enter-active {
+        animation: blinking-animation .3s ease-out;
+        animation-iteration-count: 2;
+    }
+
+    @keyframes blinking-animation {
+        50% {
+            opacity: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        100% {background-color: rgba(209, 184, 184, 0.2);}
+    }
+    @keyframes scale-text-list-animation {50% {font-size: 16px;}}
     h3 {
         font-family: 'Sulphur Point', sans-serif;
         color: $gray;
@@ -109,16 +139,6 @@ export default class Tasks extends Vue {
     }
     hr { margin-bottom: 25px; }
 
-    .blink-enter-active {
-        animation: blink .2s ease-out;
-        animation-iteration-count: 3;
-    }
-    @keyframes blink {
-        50% {
-            opacity: .5;
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-    }
     .task {
         padding: 25px;
         background: url('../assets/images/bg-task.jpg') no-repeat;
@@ -186,6 +206,28 @@ export default class Tasks extends Vue {
             transition: all 0.5s ease-in-out;
             .task-item {
                 width: 80%;
+                .task-header {
+                    margin-bottom: 5px;
+                    .task-status {
+                        font-family: 'Sulphur Point', sans-serif;
+                        color: $purple;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        padding-left: 6px;
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            display: block;
+                            background-color: $purple;
+                            width: 3px;
+                            height: 3px;
+                            border-radius: 50px;
+                            left: 0;
+                        }
+                    }
+                }
                 .task-title {
                     margin-bottom: 15px;
                 }
@@ -204,7 +246,7 @@ export default class Tasks extends Vue {
                 height: 35px;
                 border-radius: 8px;
                 color: $white;
-                transition: all 0.5s ease-in-out;
+                transition: all 0.1s ease-in-out;
                     &:hover {
                         opacity: 0.5;
                     }
