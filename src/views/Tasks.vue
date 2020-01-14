@@ -140,6 +140,8 @@ export default class Tasks extends Vue {
     hr { margin-bottom: 25px; }
 
     .task {
+        width: 730px;
+        margin: auto;
         padding: 25px;
         background: url('../assets/images/bg-task.jpg') no-repeat;
         background-size: cover;
@@ -261,6 +263,11 @@ export default class Tasks extends Vue {
     }
 
     // media
+    @media screen and (max-width: 1145px) {
+        .task {
+            width: 90%;
+        }
+    }
     @media screen and (max-width: 625px) {
         .f14 {
             font-size: 12px;

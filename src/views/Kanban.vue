@@ -28,14 +28,16 @@ $gray: #ebecf0;
 $light-gray: #dedede;
 $dark-blue: #172b4d;
     .kanban {
+        width: 730px;
+        margin: auto;
         background: url('../assets/images/bg-kanban.jpg') no-repeat;
         background-size: cover;
-        border-radius: 3px;
+        border-radius: 10px;
         height: 100vh;
         &-title {
             font-family: 'Satisfy', cursive;
             color: $white-light;
-            border-radius: 3px 3px 0 0;
+            border-radius: 10px 10px 0 0;
             background: rgba(0,0,0,.32);
             padding: 10px 4px 10px 8px;
             transition: padding .1s ease-in;
@@ -56,21 +58,21 @@ $dark-blue: #172b4d;
             hsla(0,0%,100%,0) 80px,hsla(0,0%,100%,0));
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: space-around;
             margin: 0 5px;
             box-sizing: border-box;
             .list {
                 -webkit-box-shadow: 2px -1px 17px 0px rgba(122,122,122,0.37);
                 -moz-box-shadow: 2px -1px 17px 0px rgba(122,122,122,0.37);
                 box-shadow: 2px -1px 17px 0px rgba(122,122,122,0.37);
-                width: 270px;
+                width: 30%;
                 background: rgba(0, 0, 0, 0.32);
                 box-shadow: 0 0 10px 5px $gray;
                 border-radius: 5px;
                 box-sizing: border-box;
                 max-height: 100%;
                 white-space: normal;
-                margin: 5px 20px;
+                margin: 5px 10px;
                 &-header {
                     color: $white;
                     text-shadow: 1px 1px 2px $dark-blue;
@@ -92,6 +94,29 @@ $dark-blue: #172b4d;
                     }
                 }
 
+            }
+        }
+    }
+    @media screen and (max-width: 1060px) {
+        .kanban {
+            width: 100%;
+        }
+    }
+    @media screen and (max-width: 669px) {
+        .kanban{
+            &-list {
+                .list {
+                    width: 70%;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 420px) {
+        .kanban{
+            &-list {
+                .list {
+                    width: 90%;
+                }
             }
         }
     }
