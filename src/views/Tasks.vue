@@ -5,18 +5,19 @@
     h3.task-title.fw600.f20.mt-3 {{titleTask}}
     form.task-form(v-on:submit.prevent='')
       .form-group
-        input.form-input(type='text' placeholder='Add task' v-model='newTask' required='')
+        input.form-input(type='text' placeholder='Add task' v-model='newTask' required)
         textarea.form-input(rows='3' placeholder='Add description'
-        v-model='newDescription' required='')
+        v-model='newDescription' required)
+        input.form-input(type='date' v-model='deadline' required)
         .input-group-append
           button.btn-submit.fw400(type='submit' v-on:click='addTask') Add
-  hr
   transition-group(name='blink')
     .task-list(
         v-for='(taskItem, index) in taskItems' :key='index' ref='todo-list')
         .task-item
             .task-header
-                span.task-status.block.fw700 status
+                span.task-status.block.fw700 {{taskItem.status}}
+                span.task-time.block.fw700 {{taskItem.deadline}}
             span.task-title.block.fw600 {{taskItem.title}}
             p.task-text {{taskItem.description}}
         .remove-task(
@@ -26,12 +27,14 @@
 <script lang="ts">
 
 import { Component, Vue } from 'vue-property-decorator';
-import { TaskInterface } from '@/types/TaskInterface';
+import { TaskInterface, StatusTask } from '@/types/TaskInterface';
 import TheSidebar from '@/components/TheSidebar.vue';
 
 @Component
 export default class Tasks extends Vue {
   titleTask: string = 'New task';
+
+  deadline: string = '';
 
   newTask: string = '';
 
@@ -39,22 +42,31 @@ export default class Tasks extends Vue {
 
   taskItems: TaskInterface[] = [
     {
+      status: StatusTask.todo,
+      deadline: '12.09.2020',
       title: 'Copyright',
       description: 'Samanta Kwin write and publish an article about our team',
     },
     {
+      deadline: '2020-06-01',
+      status: StatusTask.inprogess,
       title: 'Project manager',
       description: 'Minika Roil commented on Account for teams and personal in bottom style',
     },
     {
+      deadline: '2019-12-31',
+      status: StatusTask.done,
       title: 'Webdesign',
       description: 'Redesign our website',
     },
   ]
 
   addTask(): void {
-    if ((this.newTask.length > 0) && (this.newDescription.length > 0)) {
+    // eslint-disable-next-line max-len
+    if ((this.newTask.length > 0) && (this.newDescription.length > 0) && (this.deadline.length > 0)) {
       this.taskItems.push({
+        status: StatusTask.todo,
+        deadline: this.deadline,
         title: this.newTask,
         description: this.newDescription,
       });
@@ -74,6 +86,13 @@ export default class Tasks extends Vue {
       setTimeout(() => {
         blinkedTask[i].classList.add('scale-text-list');
       }, 500 * i);
+    }
+  }
+
+  beforeUpdate() {
+    const blinkedTask = this.$refs['todo-list'] as Array<any>;
+    for (let j = 0; j <= blinkedTask.length; j += 1) {
+      blinkedTask[j].classList.remove('scale-text-row');
     }
   }
 }
@@ -152,6 +171,7 @@ export default class Tasks extends Vue {
                 color: $gray;
             }
             .task-form {
+                border-bottom: 1px solid #eaeaea;
                 .form-group {
                     width: 195px !important;
                     .form-input {
@@ -160,7 +180,7 @@ export default class Tasks extends Vue {
                         border-bottom: 1px solid $pink;
                         background: transparent;
                         border-radius: 0;
-                        margin: 15px 0;
+                        margin: 5px 0;
                         padding: 5px;
                         height: 25px;
                     }
@@ -181,7 +201,7 @@ export default class Tasks extends Vue {
                             border-top-left-radius: 0;
                             border-bottom-left-radius: 0;
                             transition: all .5s ease-in-out;
-                            margin-bottom: 25px;
+                            margin: 15px 0;
                                 &:hover {
                                     color: $white;
                                     background-color: $br-lg-gray;
@@ -209,10 +229,12 @@ export default class Tasks extends Vue {
             .task-item {
                 width: 80%;
                 .task-header {
+                    font-family: 'Sulphur Point', sans-serif;
+                    color: $purple;
+                    display: flex;
+                    justify-content: space-between;
                     margin-bottom: 5px;
                     .task-status {
-                        font-family: 'Sulphur Point', sans-serif;
-                        color: $purple;
                         position: relative;
                         display: flex;
                         align-items: center;
@@ -228,6 +250,9 @@ export default class Tasks extends Vue {
                             border-radius: 50px;
                             left: 0;
                         }
+                    }
+                    .task-time {
+
                     }
                 }
                 .task-title {
