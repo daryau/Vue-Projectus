@@ -40,43 +40,25 @@ export default class Tasks extends Vue {
 
   newDescription: string = '';
 
-  taskItems: TaskInterface[] = [
-    {
-      status: StatusTask.todo,
-      deadline: '12.09.2020',
-      title: 'Copyright',
-      description: 'Samanta Kwin write and publish an article about our team',
-    },
-    {
-      deadline: '2020-06-01',
-      status: StatusTask.inprogess,
-      title: 'Project manager',
-      description: 'Minika Roil commented on Account for teams and personal in bottom style',
-    },
-    {
-      deadline: '2019-12-31',
-      status: StatusTask.done,
-      title: 'Webdesign',
-      description: 'Redesign our website',
-    },
-  ]
+  taskItems = this.$store.getters.getTaskItems;
 
   addTask(): void {
     // eslint-disable-next-line max-len
     if ((this.newTask.length > 0) && (this.newDescription.length > 0) && (this.deadline.length > 0)) {
-      this.taskItems.push({
+      const taskItem: TaskInterface = {
         status: StatusTask.todo,
         deadline: this.deadline,
         title: this.newTask,
         description: this.newDescription,
-      });
+      };
       this.newTask = '';
       this.newDescription = '';
+      this.$store.dispatch('addTask', taskItem);
     }
   }
 
   removeTask(index: number): void {
-    this.taskItems.splice(index, 1);
+    this.$store.dispatch('removeTask', index);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -250,9 +232,6 @@ export default class Tasks extends Vue {
                             border-radius: 50px;
                             left: 0;
                         }
-                    }
-                    .task-time {
-
                     }
                 }
                 .task-title {

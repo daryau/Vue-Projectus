@@ -1,10 +1,10 @@
 export interface TaskInterface {
   status: StatusTask,
+  deadline: string,
   title: string,
   description: string,
-  deadline: string,
 }
-
+// eslint-disable-next-line import/prefer-default-export
 export enum StatusTask {
   todo = 'Todo',
   inprogess = 'In progress',

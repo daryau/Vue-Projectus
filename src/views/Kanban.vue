@@ -7,7 +7,8 @@
         .list-header
           h2.f16.fw600 ToDo
         .list-cards
-          span.list-card Text
+          span.list-card Title
+           span.list-deadline deadline
       .list
         .list-header
           h2.f16.fw600 In Progress
@@ -19,6 +20,15 @@
         .list-cards
           span.list-card Text
 </template>
+
+<script lang="ts">
+
+import { Component, Vue } from 'vue-property-decorator';
+import { TaskInterface, StatusTask } from '@/types/TaskInterface';
+
+@Component
+export default class Kanban extends Vue {}
+</script>
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');
@@ -83,7 +93,8 @@ $dark-blue: #172b4d;
                 &-cards {
                     padding: 6px 8px 20px ;
                     .list-card {
-                        display: block;
+                        display: flex;
+                        justify-content: space-between;
                         padding: 6px 8px 9px;
                         margin: 0 0 5px;
                         background-color: $white;
@@ -91,6 +102,13 @@ $dark-blue: #172b4d;
                         color: $dark-blue;
                         word-wrap: break-word;
                         border-radius: 3px;
+                        .list-deadline {
+                            display: inline-block;
+                            white-space: nowrap;
+                            color: #131313;
+                            opacity: 0.7;
+                            font-size: 10px;
+                        }
                     }
                 }
 
