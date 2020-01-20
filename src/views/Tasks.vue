@@ -42,6 +42,8 @@ export default class Tasks extends Vue {
 
   taskItems = this.$store.getters.getTaskItems;
 
+  tasks: TaskInterface[] = [];
+
   addTask(): void {
     // eslint-disable-next-line max-len
     if ((this.newTask.length > 0) && (this.newDescription.length > 0) && (this.deadline.length > 0)) {

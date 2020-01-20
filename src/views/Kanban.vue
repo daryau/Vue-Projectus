@@ -3,22 +3,18 @@
     h1.kanban-title.f25.fw700 Kanban
     span.kanban-text.block.f18.fw700 Your board
     .kanban-list
-      .list
+      .list(v-for='status in statusTask')
         .list-header
-          h2.f16.fw600 ToDo
-        .list-cards
-          span.list-card Title
-           span.list-deadline deadline
-      .list
-        .list-header
-          h2.f16.fw600 In Progress
-        .list-cards
-          span.list-card Text
-      .list
-        .list-header
-          h2.f16.fw600 Done
-        .list-cards
-          span.list-card Text
+          h2.f16.fw600 {{ status }}
+          ul.details
+            li.one-dot
+            li.one-dot
+            li.one-dot
+          span
+        .list-cards(v-for='status in statusTask')
+          span.list-card(v-for='taskItem in taskItems'
+          v-if='taskItem.status === status') {{ taskItem.title }}
+           span.list-deadline {{ taskItem.deadline }}
 </template>
 
 <script lang="ts">
@@ -27,7 +23,11 @@ import { Component, Vue } from 'vue-property-decorator';
 import { TaskInterface, StatusTask } from '@/types/TaskInterface';
 
 @Component
-export default class Kanban extends Vue {}
+export default class Kanban extends Vue {
+    statusTask = StatusTask;
+
+    taskItems = this.$store.getters.getTaskItems;
+}
 </script>
 
 <style lang="scss" scoped>
@@ -37,6 +37,8 @@ $white-light: #fbfbfb;
 $gray: #ebecf0;
 $light-gray: #dedede;
 $dark-blue: #172b4d;
+$dots: #D8D8D8;
+
     .kanban {
         width: 730px;
         margin: auto;
@@ -76,7 +78,8 @@ $dark-blue: #172b4d;
                 -moz-box-shadow: 2px -1px 17px 0px rgba(122,122,122,0.37);
                 box-shadow: 2px -1px 17px 0px rgba(122,122,122,0.37);
                 width: 30%;
-                background: rgba(0, 0, 0, 0.32);
+                // background: rgba(0, 0, 0, 0.32);
+                background: #9b9b9b;
                 box-shadow: 0 0 10px 5px $gray;
                 border-radius: 5px;
                 box-sizing: border-box;
@@ -84,19 +87,46 @@ $dark-blue: #172b4d;
                 white-space: normal;
                 margin: 5px 10px;
                 &-header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
                     color: $white;
                     text-shadow: 1px 1px 2px $dark-blue;
                     opacity: 0.9;
                     padding: 10px 8px;
                     min-height: 20px;
+                    .details {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        width: 16px;
+                        height: 16px;
+                        cursor: pointer;
+                        transition: all .2s linear;
+                        padding: 5px;
+                        border-radius: 3px;
+
+                        .one-dot {
+                            display: block;
+                            width: 4px;
+                            height: 4px;
+                            background: $dots;
+                            border-radius: 50%;
+                        }
+                    }
+                    .details:hover {
+                        background: rgba(9,30,66,.08);
+                        .one-dot {
+                            background: $white;
+                        }
+                    }
                 }
                 &-cards {
                     padding: 6px 8px 20px ;
                     .list-card {
                         display: flex;
                         justify-content: space-between;
-                        padding: 6px 8px 9px;
-                        margin: 0 0 5px;
+                        padding: 15px 10px;
                         background-color: $white;
                         box-shadow: 0 1px 0 rgba(9,30,66,.25);
                         color: $dark-blue;
@@ -111,13 +141,18 @@ $dark-blue: #172b4d;
                         }
                     }
                 }
-
             }
         }
     }
     @media screen and (max-width: 1060px) {
         .kanban {
             width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 992px) {
+        .kanban {
+            height: 100%;
         }
     }
     @media screen and (max-width: 669px) {

@@ -18,10 +18,10 @@
                             | {{userFullName}}
                         span.wrap--profile-info__text_type.f12.block
                             | {{kindOfPositiom}}
-            ul.wrap_left-menu__profile__more
-                li.one-dot
-                li.one-dot
-                li.one-dot
+                ul.wrap_left-menu__profile__more
+                    li.one-dot
+                    li.one-dot
+                    li.one-dot
             .wrap__left-menu__tasks
                 .wrap__left-menu__tasks_completed-tasks(v-on:click='closeTasks')
                     span.wrap--tasks_completed-tasks__count.f20.block
