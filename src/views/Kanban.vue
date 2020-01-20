@@ -11,7 +11,7 @@
             li.one-dot
             li.one-dot
           span
-        .list-cards(v-for='status in statusTask')
+        .list-cards
           span.list-card(v-for='taskItem in taskItems'
           v-if='taskItem.status === status') {{ taskItem.title }}
            span.list-deadline {{ taskItem.deadline }}
@@ -32,6 +32,7 @@ export default class Kanban extends Vue {
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 $white: #ffffff;
 $white-light: #fbfbfb;
 $gray: #ebecf0;
@@ -57,6 +58,7 @@ $dots: #D8D8D8;
             text-shadow: 5px 5px 3px $dark-blue;
         }
         &-text {
+            font-family: 'Muli', sans-serif;
             background: linear-gradient(180deg,hsla(0,0%,100%,.24) 0,
             hsla(0,0%,100%,.24) 48px,
             hsla(0,0%,100%,0) 80px,hsla(0,0%,100%,0));
@@ -73,6 +75,7 @@ $dots: #D8D8D8;
             justify-content: space-around;
             margin: 0 5px;
             box-sizing: border-box;
+            padding-bottom: 50px;
             .list {
                 -webkit-box-shadow: 2px -1px 17px 0px rgba(122,122,122,0.37);
                 -moz-box-shadow: 2px -1px 17px 0px rgba(122,122,122,0.37);
@@ -105,7 +108,6 @@ $dots: #D8D8D8;
                         transition: all .2s linear;
                         padding: 5px;
                         border-radius: 3px;
-
                         .one-dot {
                             display: block;
                             width: 4px;
@@ -132,6 +134,8 @@ $dots: #D8D8D8;
                         color: $dark-blue;
                         word-wrap: break-word;
                         border-radius: 3px;
+                        margin-bottom: 5px;
+                        font-size: 12px;
                         .list-deadline {
                             display: inline-block;
                             white-space: nowrap;

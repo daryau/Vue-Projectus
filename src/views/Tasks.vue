@@ -72,13 +72,6 @@ export default class Tasks extends Vue {
       }, 500 * i);
     }
   }
-
-  beforeUpdate() {
-    const blinkedTask = this.$refs['todo-list'] as Array<any>;
-    for (let j = 0; j <= blinkedTask.length; j += 1) {
-      blinkedTask[j].classList.remove('scale-text-row');
-    }
-  }
 }
 </script>
 
