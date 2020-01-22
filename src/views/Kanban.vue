@@ -2,6 +2,10 @@
   .kanban
     h1.kanban-title.f25.fw700 Kanban
     span.kanban-text.block.f18.fw700 Your board
+    TheDetailsModal(
+        v-if='showDetails'
+        @close='showDetails = false'
+    )
     .kanban-list
       .list(v-for='status in statusTask')
         .list-header
@@ -12,7 +16,8 @@
             li.one-dot
           span
         .list-cards
-          span.list-card(v-for='taskItem in taskItems'
+          span.list-card(@click='showDetails = true'
+          v-for='taskItem in taskItems'
           v-if='taskItem.status === status') {{ taskItem.title }}
            span.list-deadline {{ taskItem.deadline }}
 </template>
@@ -21,12 +26,17 @@
 
 import { Component, Vue } from 'vue-property-decorator';
 import { TaskInterface, StatusTask } from '@/types/TaskInterface';
+import TheDetailsModal from '@/components/TheDetailsModal.vue';
 
-@Component
+@Component({
+  components: { TheDetailsModal },
+})
 export default class Kanban extends Vue {
     statusTask = StatusTask;
 
     taskItems = this.$store.getters.getTaskItems;
+
+    showDetails:boolean = false;
 }
 </script>
 
@@ -136,12 +146,17 @@ $dots: #D8D8D8;
                         border-radius: 3px;
                         margin-bottom: 5px;
                         font-size: 12px;
+                        cursor: pointer;
+                        transition: all .5s ease-in-out;
                         .list-deadline {
                             display: inline-block;
                             white-space: nowrap;
                             color: #131313;
                             opacity: 0.7;
                             font-size: 10px;
+                        }
+                        &:hover {
+                            box-shadow: 0 0 10px 5px #d8d8d8;
                         }
                     }
                 }

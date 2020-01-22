@@ -46,8 +46,8 @@ export default new Vuex.Store({
     addTask(state, taskItem: TaskInterface) {
       state.taskItems.push(taskItem);
     },
-    removeTask(state, taskItemIndex: number) {
-      state.taskItems.splice(taskItemIndex, 1);
+    removeTask(state, index: number) {
+      state.taskItems.splice(index, 1);
     },
   },
 });

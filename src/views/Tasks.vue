@@ -1,16 +1,9 @@
 <template lang="pug">
 .task
-  .titleTask
   .task-add
     h3.task-title.fw600.f20.mt-3 {{titleTask}}
-    form.task-form(v-on:submit.prevent='')
-      .form-group
-        input.form-input(type='text' placeholder='Add task' v-model='newTask' required)
-        textarea.form-input(rows='3' placeholder='Add description'
-        v-model='newDescription' required)
-        input.form-input(type='date' v-model='deadline' required)
-        .input-group-append
-          button.btn-submit.fw400(type='submit' v-on:click='addTask') Add
+    button.btn-submit.fw400(type='button' @click='isAddTask = true') Add
+    TheAddTaskModule( v-if='isAddTask' @close='isAddTask = false')
   transition-group(name='blink')
     .task-list(
         v-for='(taskItem, index) in taskItems' :key='index' ref='todo-list')
@@ -29,39 +22,19 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { TaskInterface, StatusTask } from '@/types/TaskInterface';
 import TheSidebar from '@/components/TheSidebar.vue';
+import TheAddTaskModule from '@/components/TheAddTaskModule.vue';
 
-@Component
+@Component({
+  components: { TheAddTaskModule },
+})
 export default class Tasks extends Vue {
   titleTask: string = 'New task';
 
-  deadline: string = '';
-
-  newTask: string = '';
-
-  newDescription: string = '';
+  isAddTask: boolean = false;
 
   taskItems = this.$store.getters.getTaskItems;
 
   tasks: TaskInterface[] = [];
-
-  addTask(): void {
-    // eslint-disable-next-line max-len
-    if ((this.newTask.length > 0) && (this.newDescription.length > 0) && (this.deadline.length > 0)) {
-      const taskItem: TaskInterface = {
-        status: StatusTask.todo,
-        deadline: this.deadline,
-        title: this.newTask,
-        description: this.newDescription,
-      };
-      this.newTask = '';
-      this.newDescription = '';
-      this.$store.dispatch('addTask', taskItem);
-    }
-  }
-
-  removeTask(index: number): void {
-    this.$store.dispatch('removeTask', index);
-  }
 
   // eslint-disable-next-line class-methods-use-this
   mounted() {
@@ -72,6 +45,13 @@ export default class Tasks extends Vue {
       }, 500 * i);
     }
   }
+
+//   beforeUpdate() {
+//     const blinkedTask = this.$refs['todo-list'] as Array<any>;
+//     for (let j = 0; j <= blinkedTask.length; j += 1) {
+//       blinkedTask[j].classList.remove('scale-text-row');
+//     }
+//   }
 }
 </script>
 
@@ -143,12 +123,35 @@ export default class Tasks extends Vue {
         background-size: cover;
         border-radius: 10px;
         &-add {
+          border-bottom: 1px solid #eaeaea;
             &-title{
                 line-height: 16px;
                 color: $gray;
             }
+            .btn-submit {
+                width: 90px;
+                display: inline-block;
+                color: $dark-gray;
+                text-align: center;
+                vertical-align: middle;
+                cursor: pointer;
+                background-color: transparent;
+                border: 1px solid transparent;
+                padding: .375rem .75rem;
+                line-height: 1.5;
+                border-radius: .25rem;
+                color: $lg-gray;
+                border-color: $lg-gray;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                transition: all .5s ease-in-out;
+                margin: 0 0 15px;
+                    &:hover {
+                        color: $white;
+                        background-color: $br-lg-gray;
+                        border-color: $br-lg-gray;
+                    }
             .task-form {
-                border-bottom: 1px solid #eaeaea;
                 .form-group {
                     width: 195px !important;
                     .form-input {
@@ -160,32 +163,7 @@ export default class Tasks extends Vue {
                         margin: 5px 0;
                         padding: 5px;
                         height: 25px;
-                    }
-                    .input-group-append {
-                        .btn-submit {
-                            display: inline-block;
-                            color: $dark-gray;
-                            text-align: center;
-                            vertical-align: middle;
-                            cursor: pointer;
-                            background-color: transparent;
-                            border: 1px solid transparent;
-                            padding: .375rem .75rem;
-                            line-height: 1.5;
-                            border-radius: .25rem;
-                            color: $lg-gray;
-                            border-color: $lg-gray;
-                            border-top-left-radius: 0;
-                            border-bottom-left-radius: 0;
-                            transition: all .5s ease-in-out;
-                            margin: 15px 0;
-                                &:hover {
-                                    color: $white;
-                                    background-color: $br-lg-gray;
-                                    border-color: $br-lg-gray;
-                                }
-                        }
-                    }
+                    }}
                 }
             }
         }
