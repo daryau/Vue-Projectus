@@ -33,9 +33,11 @@ export default class AddTask extends Vue {
   newDescription: string = '';
 
   addTask() {
+    const id = this.$store.getters.getNextTaskId + 1;
     // eslint-disable-next-line max-len
     if ((this.newTask.length > 0) && (this.newDescription.length > 0) && (this.deadline.length > 0)) {
       const taskItem: TaskInterface = {
+        id,
         status: StatusTask.todo,
         deadline: this.deadline,
         title: this.newTask,
@@ -46,10 +48,6 @@ export default class AddTask extends Vue {
       this.$store.dispatch('addTask', taskItem);
       this.$emit('close');
     }
-  }
-
-  removeTask(index: number) {
-    this.$store.dispatch('removeTask', index);
   }
 }
 

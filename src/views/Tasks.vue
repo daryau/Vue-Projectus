@@ -6,9 +6,10 @@
     TheAddTaskModule( v-if='isAddTask' @close='isAddTask = false')
   transition-group(name='blink')
     .task-list(
-        v-for='(taskItem, index) in taskItems' :key='index' ref='todo-list')
+        v-for='(taskItem, index) in taskItems' :key='taskItem.id' ref='todo-list')
         .task-item
             .task-header
+                span {{ taskItem.id }}
                 span.task-status.block.fw700 {{taskItem.status}}
                 span.task-time.block.fw700 {{taskItem.deadline}}
             span.task-title.block.fw600 {{taskItem.title}}
@@ -35,6 +36,10 @@ export default class Tasks extends Vue {
   taskItems = this.$store.getters.getTaskItems;
 
   tasks: TaskInterface[] = [];
+
+  removeTask(index: number) {
+    this.$store.dispatch('removeTask', index);
+  }
 
   // eslint-disable-next-line class-methods-use-this
   mounted() {

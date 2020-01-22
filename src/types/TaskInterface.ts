@@ -1,4 +1,5 @@
 export interface TaskInterface {
+  id: number;
   status: StatusTask,
   deadline: string,
   title: string,
