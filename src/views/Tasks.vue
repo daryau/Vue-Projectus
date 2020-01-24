@@ -3,13 +3,20 @@
   .task-add
     h3.task-title.fw600.f20.mt-3 {{titleTask}}
     button.btn-submit.fw400(type='button' @click='isAddTask = true') Add
-    TheAddTaskModule( v-if='isAddTask' @close='isAddTask = false')
+    AddTaskModal(
+        v-if='isAddTask'
+        @close='isAddTask = false')
+    DetailsTaskModal(v-if="isDetailTask"
+      @close="isDetailTask = false"
+      :detailsTask="detailsTask")
   transition-group(name='blink')
     .task-list(
-        v-for='(taskItem, index) in taskItems' :key='taskItem.id' ref='todo-list')
+        v-for='(taskItem, index) in taskItems'
+        :key='taskItem.id'
+        ref='todo-list'
+        @click="taskId(taskItem.id)")
         .task-item
             .task-header
-                span {{ taskItem.id }}
                 span.task-status.block.fw700 {{taskItem.status}}
                 span.task-time.block.fw700 {{taskItem.deadline}}
             span.task-title.block.fw600 {{taskItem.title}}
@@ -23,19 +30,29 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { TaskInterface, StatusTask } from '@/types/TaskInterface';
 import TheSidebar from '@/components/TheSidebar.vue';
-import TheAddTaskModule from '@/components/TheAddTaskModule.vue';
+import AddTaskModal from '@/modals/AddTaskModal.vue';
+import DetailsTaskModal from '@/modals/DetailsTaskModal.vue';
 
 @Component({
-  components: { TheAddTaskModule },
+  components: { AddTaskModal, DetailsTaskModal },
 })
 export default class Tasks extends Vue {
   titleTask: string = 'New task';
 
   isAddTask: boolean = false;
 
+  isDetailTask: boolean = false;
+
   taskItems = this.$store.getters.getTaskItems;
 
   tasks: TaskInterface[] = [];
+
+  detailsTask: TaskInterface;
+
+  taskId(id: number) {
+    this.isDetailTask = true;
+    this.detailsTask = this.$store.getters.getTaskById(id);
+  }
 
   removeTask(index: number) {
     this.$store.dispatch('removeTask', index);
@@ -121,6 +138,7 @@ export default class Tasks extends Vue {
     hr { margin-bottom: 25px; }
 
     .task {
+        height: 100vh;
         width: 730px;
         margin: auto;
         padding: 25px;
@@ -173,6 +191,7 @@ export default class Tasks extends Vue {
             }
         }
         .task-list {
+            cursor: pointer;
             width: 50%;
             display: flex;
             flex-wrap: wrap;
@@ -186,6 +205,11 @@ export default class Tasks extends Vue {
             -moz-box-shadow: 2px 2px 15px -8px rgba(0,0,0,0.8);
             box-shadow: 2px 2px 15px -8px rgba(0,0,0,0.8);
             transition: all 0.5s ease-in-out;
+
+            &:hover {
+                border-radius: 0 5px 25px;
+                box-shadow: 2px 2px 15px -8px rgba(0,0,0,0.5);
+            }
             .task-item {
                 width: 80%;
                 .task-header {
@@ -255,6 +279,7 @@ export default class Tasks extends Vue {
             font-size: 12px;
         }
         .task {
+            height: 100%;
             padding: 15px;
             .task-list { width: 80%; }
         }

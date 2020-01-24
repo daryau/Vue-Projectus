@@ -2,10 +2,10 @@
   .kanban
     h1.kanban-title.f25.fw700 Kanban
     span.kanban-text.block.f18.fw700 Your board
-    TheDetailsModal(
-        v-if='showDetails'
-        @close='showDetails = false'
-    )
+    DetailsTaskModal(
+        v-if='isDetailTask'
+        @close='isDetailTask = false'
+        :detailsTask="detailsTask")
     .kanban-list
       .list(v-for='status in statusTask')
         .list-header
@@ -16,9 +16,10 @@
             li.one-dot
           span
         .list-cards
-          span.list-card(@click='showDetails = true'
+          span.list-card(
           v-for='taskItem in taskItems'
-          v-if='taskItem.status === status') {{ taskItem.title }}
+          v-if='taskItem.status === status'
+          @click='taskId(taskItem.id)') {{ taskItem.title }}
            span.list-deadline {{ taskItem.deadline }}
 </template>
 
@@ -26,21 +27,26 @@
 
 import { Component, Vue } from 'vue-property-decorator';
 import { TaskInterface, StatusTask } from '@/types/TaskInterface';
-import TheDetailsModal from '@/components/TheDetailsModal.vue';
+import DetailsTaskModal from '@/modals/DetailsTaskModal.vue';
 
 @Component({
-  components: { TheDetailsModal },
+  components: { DetailsTaskModal },
 })
 export default class Kanban extends Vue {
     statusTask = StatusTask;
 
     taskItems = this.$store.getters.getTaskItems;
 
-    showDetails:boolean = false;
+    isDetailTask:boolean = false;
+
+    taskId(id: number) {
+      this.isDetailTask = true;
+      this.detailsTask = this.$store.getters.getTaskById(id);
+    }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 $white: #ffffff;
@@ -91,7 +97,6 @@ $dots: #D8D8D8;
                 -moz-box-shadow: 2px -1px 17px 0px rgba(122,122,122,0.37);
                 box-shadow: 2px -1px 17px 0px rgba(122,122,122,0.37);
                 width: 30%;
-                // background: rgba(0, 0, 0, 0.32);
                 background: #9b9b9b;
                 box-shadow: 0 0 10px 5px $gray;
                 border-radius: 5px;
@@ -147,7 +152,7 @@ $dots: #D8D8D8;
                         margin-bottom: 5px;
                         font-size: 12px;
                         cursor: pointer;
-                        transition: all .5s ease-in-out;
+                        transition: all .2s ease-in-out;
                         .list-deadline {
                             display: inline-block;
                             white-space: nowrap;

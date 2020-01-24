@@ -3,29 +3,46 @@
     .modal-backdrop
       .modal(role='dialog' aria-labelledby='modalTitle' aria-describedby='modalDescription')
         header#modalTitle.modal-header
-          slot(name='header')
-            h2 Task details:
-            button.btn-close(type='button' @click="$emit('close')" aria-label='Close modal')
-              | x
+          h2 Task details:
+          button.btn-close(type='button' @click="$emit('close')" aria-label='Close modal')
+            | x
         section#modalDescription.modal-body
-          slot(name='body')
-            | ggg
+            div.details {{ title }} {{ detailsTask.title }}
+            div.details  {{ deadline }}
+              span.fw600 {{ detailsTask.deadline }}
+            div.details {{ status }}  {{ detailsTask.status }}
+            div.details {{ description }} {{ detailsTask.description }}
         footer.modal-footer
-          slot(name='footer')
-            button.btn.btn-modal Edit
-            button.btn.btn-cancel(type='btn-details' aria-label='Close modal') Cancel
+          button.btn.btn-modal Edit
+          button.btn.btn-cancel(type='btn-details' @click="$emit('close')" aria-label='Close modal')
+           |Cancel
 </template>
 
 <script lang="ts">
 
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import { TaskInterface, StatusTask } from '@/types/TaskInterface';
 
 @Component
-export default class DetailsTask extends Vue {}
+export default class DetailsTaskModal extends Vue {
+  status: string = 'Status: ';
+
+  deadline: string = 'Deadline: ';
+
+  title: string = 'Title: ';
+
+  description: string = 'Description: ';
+
+  @Prop(Object) readonly detailsTask: TaskInterface;
+}
 </script>
 
-
  <style lang="scss" scoped>
+  .details {
+    font-size: 12px;
+    padding: 5px 0;
+    line-height: 1.5;
+  }
   .modal-fade-enter,
   .modal-fade-leave-active {
     opacity: 0;
@@ -35,6 +52,7 @@ export default class DetailsTask extends Vue {}
     transition: opacity .5s ease;
   }
   .modal-backdrop {
+    font-family: 'Muli', sans-serif;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -46,14 +64,26 @@ export default class DetailsTask extends Vue {}
     align-items: center;
     z-index: 2;
     .modal {
+      background: url('../assets/images/bg-kanban.jpg') no-repeat;
+      background-size: auto;
       width: 300px;
       border-radius: 25px 5px;
-      background: #FFFFFF;
       box-shadow: 2px 2px 20px 1px;
       overflow-x: auto;
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
+      position: relative;
+        &::before {
+          position: absolute;
+          content: '';
+          background: url('../assets/images/ic-task.png') no-repeat;
+          right: 0;
+          width: 90px;
+          height: 50px;
+          bottom: 69px;
+          background-size: contain;
+        }
 
       .modal-header{
         font-size: 16px;
