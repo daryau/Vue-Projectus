@@ -7,14 +7,18 @@
           button.btn-close(type='button' @click="$emit('close')" aria-label='Close modal')
             | x
         section#modalDescription.modal-body
-            div.details {{ title }} {{ detailsTask.title }}
+            div.details(v-if="!isEdit") {{ title }} {{ tasksEdit.title }}
+            textarea(v-else v-model='taskTitle' @input='taskEdit')
             div.details  {{ deadline }}
-              span.fw600 {{ detailsTask.deadline }}
-            div.details {{ status }}  {{ detailsTask.status }}
-            div.details {{ description }} {{ detailsTask.description }}
+              span.fw600 {{ tasksEdit.deadline }}
+            div.details {{ status }}  {{ tasksEdit.status }}
+            div.details(v-if="!isEdit") {{ description }} {{ tasksEdit.description }}
+            textarea(v-else v-model='taskDescripton' @input='taskEdit')
         footer.modal-footer
-          button.btn.btn-modal Edit
-          button.btn.btn-cancel(type='btn-details' @click="$emit('close')" aria-label='Close modal')
+          button.btn.btn-modal(v-if="!isEdit" @click='isEdit = true') Edit
+          button.btn.btn-modal(v-if="isTaskEdit" @click='saveChanges') Save
+          button.btn.btn-cancel(v-else @click="$emit('close')" type='btn-details'
+           aria-label='Close modal')
            |Cancel
 </template>
 
@@ -24,16 +28,35 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import { TaskInterface, StatusTask } from '@/types/TaskInterface';
 
 @Component
-export default class DetailsTaskModal extends Vue {
+export default class TaskDetailsModal extends Vue {
+  @Prop(Object) readonly tasksEdit: TaskInterface;
+
   status: string = 'Status: ';
 
   deadline: string = 'Deadline: ';
 
   title: string = 'Title: ';
 
+  isEdit = false;
+
+  isTaskEdit = false;
+
   description: string = 'Description: ';
 
-  @Prop(Object) readonly detailsTask: TaskInterface;
+  taskTitle: string = this.tasksEdit.title;
+
+  taskDescripton: string = this.tasksEdit.description;
+
+  taskEdit() {
+    this.isTaskEdit = this.taskTitle !== this.tasksEdit.title
+      || this.taskDescripton !== this.tasksEdit.description;
+  }
+
+  saveChanges() {
+    this.tasksEdit.title = this.taskTitle;
+    this.tasksEdit.description = this.taskDescripton;
+    this.$emit('close');
+  }
 }
 </script>
 

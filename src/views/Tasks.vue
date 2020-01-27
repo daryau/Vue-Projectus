@@ -3,18 +3,18 @@
   .task-add
     h3.task-title.fw600.f20.mt-3 {{titleTask}}
     button.btn-submit.fw400(type='button' @click='isAddTask = true') Add
-    AddTaskModal(
+    TaskAddModal(
         v-if='isAddTask'
         @close='isAddTask = false')
-    DetailsTaskModal(v-if="isDetailTask"
+    TaskDetailsModal(v-if="isDetailTask"
       @close="isDetailTask = false"
-      :detailsTask="detailsTask")
+      :tasksEdit="tasksEdit")
   transition-group(name='blink')
     .task-list(
         v-for='(taskItem, index) in taskItems'
         :key='taskItem.id'
         ref='todo-list'
-        @click="taskId(taskItem.id)")
+        @click="taskEdit(taskItem.id)")
         .task-item
             .task-header
                 span.task-status.block.fw700 {{taskItem.status}}
@@ -30,11 +30,11 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { TaskInterface, StatusTask } from '@/types/TaskInterface';
 import TheSidebar from '@/components/TheSidebar.vue';
-import AddTaskModal from '@/modals/AddTaskModal.vue';
-import DetailsTaskModal from '@/modals/DetailsTaskModal.vue';
+import TaskAddModal from '@/modals/TaskAddModal.vue';
+import TaskDetailsModal from '@/modals/TaskDetailsModal.vue';
 
 @Component({
-  components: { AddTaskModal, DetailsTaskModal },
+  components: { TaskDetailsModal, TaskAddModal },
 })
 export default class Tasks extends Vue {
   titleTask: string = 'New task';
@@ -47,11 +47,11 @@ export default class Tasks extends Vue {
 
   tasks: TaskInterface[] = [];
 
-  detailsTask: TaskInterface;
+  tasksEdit: TaskInterface;
 
-  taskId(id: number) {
+  taskEdit(id: number) {
     this.isDetailTask = true;
-    this.detailsTask = this.$store.getters.getTaskById(id);
+    this.tasksEdit = this.$store.getters.getTaskById(id);
   }
 
   removeTask(index: number) {

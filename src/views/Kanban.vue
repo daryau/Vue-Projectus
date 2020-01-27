@@ -2,10 +2,10 @@
   .kanban
     h1.kanban-title.f25.fw700 Kanban
     span.kanban-text.block.f18.fw700 Your board
-    DetailsTaskModal(
+    TaskDetailsModal(
         v-if='isDetailTask'
         @close='isDetailTask = false'
-        :detailsTask="detailsTask")
+        :tasksEdit="tasksEdit")
     .kanban-list
       .list(v-for='status in statusTask')
         .list-header
@@ -19,7 +19,7 @@
           span.list-card(
           v-for='taskItem in taskItems'
           v-if='taskItem.status === status'
-          @click='taskId(taskItem.id)') {{ taskItem.title }}
+          @click='taskEdit(taskItem.id)') {{ taskItem.title }}
            span.list-deadline {{ taskItem.deadline }}
 </template>
 
@@ -27,10 +27,10 @@
 
 import { Component, Vue } from 'vue-property-decorator';
 import { TaskInterface, StatusTask } from '@/types/TaskInterface';
-import DetailsTaskModal from '@/modals/DetailsTaskModal.vue';
+import TaskDetailsModal from '@/modals/TaskDetailsModal.vue';
 
 @Component({
-  components: { DetailsTaskModal },
+  components: { TaskDetailsModal },
 })
 export default class Kanban extends Vue {
     statusTask = StatusTask;
@@ -39,9 +39,9 @@ export default class Kanban extends Vue {
 
     isDetailTask:boolean = false;
 
-    taskId(id: number) {
+    taskEdit(id: number) {
       this.isDetailTask = true;
-      this.detailsTask = this.$store.getters.getTaskById(id);
+      this.tasksEdit = this.$store.getters.getTaskById(id);
     }
 }
 </script>

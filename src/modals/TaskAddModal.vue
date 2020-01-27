@@ -23,7 +23,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { TaskInterface, StatusTask } from '@/types/TaskInterface';
 
 @Component
-export default class AddTask extends Vue {
+export default class TaskAddModal extends Vue {
   titleTask: string = 'Add task';
 
   deadline: string = '';
