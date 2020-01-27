@@ -6,6 +6,8 @@
             span
             span
         .wrap__left-menu(v-if='visible')
+            .close(@click="visible = false")
+              span
             .wrap__left-menu__header
                 a.wrap__left-menu__header_logo.uppercase.f16(href='#')
                     | {{companyName}}
@@ -96,3 +98,47 @@ export default class TheSidebar extends Vue {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    .close {
+        margin-top: 5px;
+        width: 95%;
+        height: 30px;
+        position: relative;
+        top: 0;
+        right: 0;
+        border-radius: 4px;
+        z-index: 5;
+        cursor: pointer;
+          span {
+            &:before {
+                transition: all .5s ease-in-out;
+                content: '';
+                position: absolute;
+                width: 20px;
+                height: 2px;
+                background: #ffffff;
+                transform: translateY(9px) rotate(45deg);
+                right: 0;
+                top: 7px;
+            }
+
+            &:after {
+                transition: all .5s ease-in-out;
+                content: '';
+                position: absolute;
+                width: 20px;
+                height: 2px;
+                background: #ffffff;
+                transform: translateY(-9px) rotate(-45deg);
+                right: 0;
+                top: 25px;
+             }
+          }
+          span:hover {
+            &:before, &:after {
+                background: gray;
+            }
+          }
+    }
+</style>
