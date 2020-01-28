@@ -37,9 +37,9 @@ export default class TaskDetailsModal extends Vue {
 
   title: string = 'Title: ';
 
-  isEdit = false;
+  isEdit: boolean = false;
 
-  isTaskEdit = false;
+  isTaskEdit: boolean = false;
 
   description: string = 'Description: ';
 

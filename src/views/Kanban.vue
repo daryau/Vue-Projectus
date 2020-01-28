@@ -10,12 +10,12 @@
       .list(v-for='status in statusTask')
         .list-header
           h2.f16.fw600 {{ status }}
-          ul.details
-            li.one-dot
-            li.one-dot
-            li.one-dot
-          span
-        .list-cards
+        draggable.list-cards(
+            ghost-class='ghost-card'
+            :animation='200'
+            group='taskItem-card'
+            :list='taskItem' @end="onEnd"
+        )
           span.list-card(
           v-for='taskItem in taskItems'
           v-if='taskItem.status === status'
@@ -26,22 +26,28 @@
 <script lang="ts">
 
 import { Component, Vue } from 'vue-property-decorator';
+import draggable from 'vuedraggable';
 import { TaskInterface, StatusTask } from '@/types/TaskInterface';
 import TaskDetailsModal from '@/modals/TaskDetailsModal.vue';
 
 @Component({
-  components: { TaskDetailsModal },
+  components: { TaskDetailsModal, draggable },
 })
 export default class Kanban extends Vue {
     statusTask = StatusTask;
 
     taskItems = this.$store.getters.getTaskItems;
 
-    isDetailTask:boolean = false;
+    isDetailTask: boolean = false;
 
     taskEdit(id: number) {
       this.isDetailTask = true;
       this.tasksEdit = this.$store.getters.getTaskById(id);
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+    onEnd() {
+      
     }
 }
 </script>
@@ -56,6 +62,11 @@ $light-gray: #dedede;
 $dark-blue: #172b4d;
 $dots: #D8D8D8;
 
+    .ghost-card {
+        opacity: 0.5;
+        background: #F7FAFC;
+        // border: 1px solid #4299e1;
+    }
     .kanban {
         width: 730px;
         margin: auto;
@@ -139,7 +150,7 @@ $dots: #D8D8D8;
                     }
                 }
                 &-cards {
-                    padding: 6px 8px 20px ;
+                    padding: 6px 8px 6px ;
                     .list-card {
                         display: flex;
                         justify-content: space-between;
