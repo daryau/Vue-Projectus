@@ -29,7 +29,7 @@ import { TaskInterface, StatusTask } from '@/types/TaskInterface';
 
 @Component
 export default class TaskDetailsModal extends Vue {
-  @Prop(Object) readonly tasksEdit: TaskInterface;
+  @Prop() tasksEdit!: TaskInterface;
 
   status: string = 'Status: ';
 

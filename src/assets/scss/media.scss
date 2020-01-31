@@ -211,16 +211,19 @@ $yellow: #FFC200;
     .cnt-main {
         .content {
             width: 100%;
+            .header {
+                justify-content: space-around;
+                padding: 0 30px 5px 70px;
+            }
         }
         .wrap { 
-            
-            .burger {
+            .burger-menu {
                 display: block;
             }
             &__left-menu {
                 position: fixed;
                 z-index: 2;
-                .close {
+                .close-burger {
                     display: block;
                 }
             }   
@@ -381,18 +384,6 @@ $yellow: #FFC200;
     }
 }
 
-@media screen and (max-width: 401px) {
-    .cnt-main {
-        .wrap {
-            &__left-menu {
-                // &__header {
-                //     padding: 33px 30px 35px 90px;
-                // }
-            }
-        }
-    }
-}
-
 @media screen and (max-width: 392px) {
     .cnt-main {
         h1 { font-size: 19px; }
@@ -402,7 +393,6 @@ $yellow: #FFC200;
                         &__title {
                             text-align: center;
                             padding-left: 30px;
-                            margin-left: 43px;
                             &::before {
                                 top: -4px;
                                 background-size: 25px 25px;
@@ -419,6 +409,17 @@ $yellow: #FFC200;
     }
 }
 
+@media screen and (max-width: 376px) {
+    .cnt-main {
+        .content {
+            .header-share {
+                justify-content: center;
+                margin: -15px 0 5px;
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 362px) {
     .cnt-main { 
         h1 { font-size: 17px; }
@@ -428,10 +429,6 @@ $yellow: #FFC200;
 @media screen and (max-width: 350px) {
     .cnt-main {
         .content {
-            .header-share {
-                justify-content: center;
-                margin: 15px 0;
-            }
             .content-body {
                 .wrapper-post {
                     &__item:nth-child(4) {

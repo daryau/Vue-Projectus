@@ -13,8 +13,8 @@
         draggable.list-cards(
             ghost-class='ghost-card'
             :animation='200'
-            group='taskItem-card'
-            :list='taskItem' @end="onEnd"
+            group='taskItem'
+            :list='taskItem' @add="taskStatusUpdate"
         )
           span.list-card(
           v-for='taskItem in taskItems'
@@ -40,15 +40,15 @@ export default class Kanban extends Vue {
 
     isDetailTask: boolean = false;
 
+    tasksEdit: TaskInterface = {} as TaskInterface;
+
     taskEdit(id: number) {
       this.isDetailTask = true;
       this.tasksEdit = this.$store.getters.getTaskById(id);
     }
 
     // eslint-disable-next-line class-methods-use-this
-    onEnd() {
-      
-    }
+    taskStatusUpdate() {}
 }
 </script>
 
@@ -169,7 +169,7 @@ $dots: #D8D8D8;
                             white-space: nowrap;
                             color: #131313;
                             opacity: 0.7;
-                            font-size: 10px;
+                            font-size: 8px;
                         }
                         &:hover {
                             box-shadow: 0 0 10px 5px #d8d8d8;

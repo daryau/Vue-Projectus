@@ -47,7 +47,7 @@ export default class Tasks extends Vue {
 
   tasks: TaskInterface[] = [];
 
-  tasksEdit: TaskInterface;
+  tasksEdit: TaskInterface = {} as TaskInterface;
 
   taskEdit(id: number) {
     this.isDetailTask = true;
@@ -272,6 +272,7 @@ export default class Tasks extends Vue {
     @media screen and (max-width: 1145px) {
         .task {
             width: 90%;
+            height: 100%;
         }
     }
     @media screen and (max-width: 625px) {
@@ -279,7 +280,6 @@ export default class Tasks extends Vue {
             font-size: 12px;
         }
         .task {
-            height: 100%;
             padding: 15px;
             .task-list { width: 80%; }
         }

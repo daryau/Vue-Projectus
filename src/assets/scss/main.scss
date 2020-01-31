@@ -40,61 +40,52 @@ h1 { font-size: 32px; }
 .cnt-main {
     display: flex;
     .wrap {
-        .burger {
-            transition: all .5s ease-in-out;
+        .burger-menu {
             display: none;
-            top: 4px;
-            left: 32px;
-            right: 0;
             position: fixed;
-            width: 31px;
-            height: 22px;
-            border: 1px solid $gray;
-            padding: 4px;
-            border-radius: 5px;
+            top: 10px;
+            left: 10px;
             z-index: 1;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(248, 236, 236, 0.5);
+            box-shadow: -1px 1px 15px -5px #f088a0;
+            -webkit-transition: 0.4s;
+            -moz-transition: 0.4s;
+            -o-transition: 0.4s;
+            transition: 0.4s;
             cursor: pointer;
-            span {
-                display: block;
-                width: 30px;
-                height: 2px;
-                border-radius: 5px;
-                background: $gray;
-                transition: all .5s ease-in-out;
-            }
-            span:nth-child(2) {
-                display: block;
-                position: absolute;
-                top: 10px;
-                width: 30px;
-                height: 2px;
-                border-radius: 5px;
-                background: $gray;
-            }
-            span:nth-child(3) {
-                display: block;
-                position: absolute;
-                width: 30px;
-                height: 2px;
-                top: 17px;
-                border-radius: 5px;
-                background: $gray;
-            }
-            span:nth-child(4) {
-                display: block;
-                position: absolute;
-                width: 30px;
-                height: 2px;
-                top: 24px;
-                border-radius: 5px;
-                background: $gray;
-            }
-            &:hover {
-                border: 1px solid $yellow;
-                span {
-                    background: $yellow;
+                &_lines::before,
+                &_lines::after,
+                &_lines {
+                    position: absolute;
+                    width: 25px;
+                    height: 2px;
+                    background-color: $coral;
+                    -webkit-transition: 0.4s;
+                    -moz-transition: 0.4s;
+                    -o-transition: 0.4s;
+                    transition: 0.4s;
                 }
+            .burger-menu_lines {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
             }
+            .burger-menu_lines::before {
+            content: '';
+            top: -8px;
+            }
+            .burger-menu_lines::after {
+            content: '';
+            top: 8px;
+            }
+
+            &:hover {
+                filter: grayscale(0.5);
+            }
+
         }
         &__left-menu {
             min-height: 100%;
@@ -102,7 +93,7 @@ h1 { font-size: 32px; }
             width: 270px;
             background-color: $black;
 
-            .close {
+            .close-burger {
                 display: none;
             }
     

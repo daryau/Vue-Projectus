@@ -38,7 +38,7 @@ export default new Vuex.Store({
   getters: {
     getTaskItems: state => state.taskItems,
     getNextTaskId: state => state.nextTaskId,
-    getTaskById: state => id => state.taskItems.find(taskItem => taskItem.id === id),
+    getTaskById: state => (id:number) => state.taskItems.find(taskItem => taskItem.id === id),
   },
 
   actions: {
