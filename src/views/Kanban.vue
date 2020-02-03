@@ -7,18 +7,18 @@
         @close='isDetailTask = false'
         :tasksEdit="tasksEdit")
     .kanban-list
-      .list(v-for='status in statusTask')
+      .list(v-for='status in todoList')
         .list-header
           h2.f16.fw600 {{ status.todo }}
         draggable.list-cards(
             ghost-class='ghost-card'
             :animation='200'
-            group='taskItems'
-            :list='taskItem' @add="taskStatusUpdate"
+            group='сard'
+            :list='todoList'
         )
           span.list-card(
           v-for='taskItem in taskItems'
-          v-if='taskItem.status === status'
+          v-if='taskItem.status === todoList'
           @click='taskEdit(taskItem.id)') {{ taskItem.title }}
            span.list-deadline {{ taskItem.deadline }}
 </template>
@@ -47,10 +47,8 @@ export default class Kanban extends Vue {
     this.tasksEdit = this.$store.getters.getTaskById(id);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  taskStatusUpdate() {
-    console.log('fff');
-  }
+  todoList = this.$store.getters.getTaskItems.filter((obj:TaskInterface) => obj.status
+    === StatusTask.todo);
 }
 </script>
 
