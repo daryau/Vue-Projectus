@@ -9,11 +9,11 @@
     .kanban-list
       .list(v-for='status in statusTask')
         .list-header
-          h2.f16.fw600 {{ status }}
+          h2.f16.fw600 {{ status.todo }}
         draggable.list-cards(
             ghost-class='ghost-card'
             :animation='200'
-            group='taskItem'
+            group='taskItems'
             :list='taskItem' @add="taskStatusUpdate"
         )
           span.list-card(
@@ -34,21 +34,23 @@ import TaskDetailsModal from '@/modals/TaskDetailsModal.vue';
   components: { TaskDetailsModal, draggable },
 })
 export default class Kanban extends Vue {
-    statusTask = StatusTask;
+  statusTask = StatusTask;
 
-    taskItems = this.$store.getters.getTaskItems;
+  taskItems = this.$store.getters.getTaskItems;
 
-    isDetailTask: boolean = false;
+  isDetailTask: boolean = false;
 
-    tasksEdit: TaskInterface = {} as TaskInterface;
+  tasksEdit: TaskInterface = {} as TaskInterface;
 
-    taskEdit(id: number) {
-      this.isDetailTask = true;
-      this.tasksEdit = this.$store.getters.getTaskById(id);
-    }
+  taskEdit(id: number) {
+    this.isDetailTask = true;
+    this.tasksEdit = this.$store.getters.getTaskById(id);
+  }
 
-    // eslint-disable-next-line class-methods-use-this
-    taskStatusUpdate() {}
+  // eslint-disable-next-line class-methods-use-this
+  taskStatusUpdate() {
+    console.log('fff');
+  }
 }
 </script>
 
