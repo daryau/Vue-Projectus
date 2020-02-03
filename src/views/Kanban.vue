@@ -17,7 +17,7 @@
             :list='todoList'
         )
           span.list-card(
-          v-for='taskItem in taskItems'
+          v-for='taskItem in todoList'
           v-if='taskItem.status === todoList'
           @click='taskEdit(taskItem.id)') {{ taskItem.title }}
            span.list-deadline {{ taskItem.deadline }}
