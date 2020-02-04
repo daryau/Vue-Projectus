@@ -1,6 +1,6 @@
 <template lang="pug">
   transition(name='modal-fade')
-    .modal-backdrop
+    .modal-backdrop(@click="$emit('close')")
       .modal(role='dialog' aria-labelledby='modalTitle' aria-describedby='modalDescription')
         header#modalTitle.modal-header
             h3.task-title.fw600.f20.mt-3 {{titleTask}}
