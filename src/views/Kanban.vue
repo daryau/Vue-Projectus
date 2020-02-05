@@ -1,33 +1,43 @@
 <template lang="pug">
   .kanban
-    h1.kanban-title.f25.fw700 Kanban
-    TaskDetailsModal(
+    .filter
+        TaskDetailsModal(
         v-if='isDetailTask'
         @close='isDetailTask = false'
-        :tasksEdit="tasksEdit")
+        :tasksEdit="tasksEdit"
+        )
+        h1.filter-title.f25.fw700 Kanban
+        .filter-blocks
+            input(placeholder='Search..')
+            input(type='date')
+            input(type='date')
     .kanban-list
       .list
         .list-header
           h2.f16.fw600 {{ statusTask.todo }}
+          span.count-task 1
         draggable.list-cards(
             ghost-class='ghost-card'
             :animation='200'
             group='task'
             :list='todoList'
+            :move='namFunction'
         )
           span.list-card.todo(
-          v-for='taskItem in todoList'
-          @click='taskEdit(taskItem.id)') {{ taskItem.title }}
+            v-for='taskItem in todoList'
+            @click='taskEdit(taskItem.id)') {{ taskItem.title }}
            span.list-deadline {{ taskItem.deadline }}
 
       .list
         .list-header
           h2.f16.fw600 {{ statusTask.inprogess }}
+          span.count-task 1
         draggable.list-cards(
             ghost-class='ghost-card'
             :animation='200'
             group='task'
             :list='inProgressList'
+            :move='namFunction'
         )
           span.list-card.inProgess(
           v-for='taskItem in inProgressList'
@@ -37,11 +47,13 @@
       .list
         .list-header
           h2.f16.fw600 {{ statusTask.done }}
+          span.count-task 1
         draggable.list-cards(
             ghost-class='ghost-card'
             :animation='200'
             group='task'
             :list='doneList'
+            :move='namFunction'
         )
           span.list-card.done(
           v-for='taskItem in doneList'
@@ -81,10 +93,15 @@ export default class Kanban extends Vue {
 
   doneList = this.$store.getters.getTaskItems.filter((obj:TaskInterface) => obj.status
     === StatusTask.done);
+  /* eslint-disable */
+  namFunction(parametr: any) {
+    const moveTest = parametr;
+    console.log(moveTest);
+  }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 $white: #ffffff;
@@ -100,6 +117,18 @@ $orange: #FB7D44;
         opacity: 0.5;
         background: #F7FAFC;
     }
+    .count-task {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid;
+        border-style: dashed;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);
+        color: #ffffff;
+    }
     .kanban {
         width: 730px;
         margin: auto;
@@ -107,18 +136,48 @@ $orange: #FB7D44;
         background-size: cover;
         border-radius: 10px;
         height: 100vh;
-        &-title {
+        .filter {
             margin-bottom: 50px;
-            font-family: 'Satisfy', cursive;
-            color: $white-light;
             border-radius: 10px 10px 0 0;
             background: rgba(0,0,0,.32);
             padding: 10px 4px 10px 8px;
             transition: padding .1s ease-in;
-            text-align: center;
-            text-shadow: 5px 5px 3px $dark-blue;
             background:  rgb(158, 167, 252);
             background: linear-gradient(to top, rgba(255,0,0,0) 6%, rgb(158, 167, 252) 100%);
+            &-title {
+                text-align: center;
+                text-shadow: 5px 5px 3px $dark-blue;
+                font-family: 'Satisfy', cursive;
+                color: $white-light;
+            }
+            &-blocks {
+                box-sizing: border-box;
+                margin-top: 25px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                input {
+                    box-sizing: border-box;
+                    background: hsla(0,0%,100%,.3);
+                    border: none;
+                    padding: 5px 10px;
+                    border-radius: 10px;
+                    margin-bottom: 10px;
+
+                    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                    color: black;
+                    opacity: 1; /* Firefox */
+                    }
+
+                    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                    color: black;
+                    }
+
+                    &::-ms-input-placeholder { /* Microsoft Edge */
+                    color: black;
+                    }
+                }
+            }
         }
         &-list {
             background: linear-gradient(180deg,hsla(0,0%,100%,.24) 0,
@@ -142,7 +201,7 @@ $orange: #FB7D44;
                 margin: 5px 10px;
                 box-shadow: 2px 2px 15px -8px rgba(0, 0, 0, 0.8);
                 border-radius: 25px 5px;
-                min-height: 200px;
+                min-height: 100px;
 
                 &:nth-child(1){
                 background-image: linear-gradient(#f6f8fc, #f6f8fc),
@@ -168,7 +227,7 @@ $orange: #FB7D44;
                     justify-content: space-between;
                     color: $dark-blue;
                     opacity: 0.9;
-                    padding: 10px 8px;
+                    padding: 10px 15px;
                     min-height: 20px;
                     .details {
                         display: flex;

@@ -81,7 +81,7 @@
                             | Notifications
                             span.count.f13
                                 | {{countNotifications}}
-        .blackout(v-if='showBurger')
+        .blackout(v-if='showBurger' @click="showBurger = false")
 
 </template>
 
