@@ -15,13 +15,13 @@
       .list
         .list-header
           h2.f16.fw600 {{ statusTask.todo }}
-          span.count-task 1
+          span.count-task {{ countTask(statusTask.todo) }}
         draggable.list-cards(
             ghost-class='ghost-card'
             :animation='200'
             group='task'
             :list='todoList'
-            :move='namFunction'
+            :move='moveTest'
         )
           span.list-card.todo(
             v-for='taskItem in todoList'
@@ -31,13 +31,13 @@
       .list
         .list-header
           h2.f16.fw600 {{ statusTask.inprogess }}
-          span.count-task 1
+          span.count-task {{ countTask(statusTask.inprogess) }}
         draggable.list-cards(
             ghost-class='ghost-card'
             :animation='200'
             group='task'
             :list='inProgressList'
-            :move='namFunction'
+            :move='moveTest'
         )
           span.list-card.inProgess(
           v-for='taskItem in inProgressList'
@@ -47,13 +47,13 @@
       .list
         .list-header
           h2.f16.fw600 {{ statusTask.done }}
-          span.count-task 1
+          span.count-task {{ countTask(statusTask.done) }}
         draggable.list-cards(
             ghost-class='ghost-card'
             :animation='200'
             group='task'
             :list='doneList'
-            :move='namFunction'
+            :move='moveTest'
         )
           span.list-card.done(
           v-for='taskItem in doneList'
@@ -94,9 +94,19 @@ export default class Kanban extends Vue {
   doneList = this.$store.getters.getTaskItems.filter((obj:TaskInterface) => obj.status
     === StatusTask.done);
   /* eslint-disable */
-  namFunction(parametr: any) {
+  moveTest(parametr: any) {
     const moveTest = parametr;
-    console.log(moveTest);
+    console.log(moveTest.to);
+    console.log(moveTest.dragged);
+  }
+
+  countTask(status: StatusTask) {
+    switch (status) {
+      case StatusTask.todo: return this.todoList.length;
+      case StatusTask.inprogess: return this.inProgressList.length;
+      case StatusTask.done: return this.doneList.length;
+      default: return 0;
+    }
   }
 }
 </script>
@@ -128,6 +138,7 @@ $orange: #FB7D44;
         height: 25px;
         background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);
         color: #ffffff;
+        transition: all .1s ease-in-out;
     }
     .kanban {
         width: 730px;
