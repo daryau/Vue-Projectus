@@ -39,7 +39,6 @@ export default new Vuex.Store({
     getTaskItems: state => state.taskItems,
     getNextTaskId: state => state.nextTaskId,
     getTaskById: state => (id:number) => state.taskItems.find(taskItem => taskItem.id === id),
-    getTaskItemsLength: state => state.taskItems.length,
   },
 
   actions: {
@@ -48,6 +47,9 @@ export default new Vuex.Store({
     },
     removeTask(context, taskItemIndex:number) {
       context.commit('removeTask', taskItemIndex);
+    },
+    updateStatusTask(context, { idTask, status }) {
+      context.commit('updateStatusTask', { idTask, status });
     },
   },
 
@@ -58,6 +60,15 @@ export default new Vuex.Store({
     },
     removeTask(state, index: number) {
       state.taskItems.splice(index, 1);
+    },
+    updateStatusTask(state, { idTask, status }) {
+      for (let i = 0; i < taskItems.length; i += 1) {
+        /* eslint-disable */
+        if (idTask == taskItems[i].id) {
+          taskItems[i].status = status;
+          break;
+        }
+      }
     },
   },
 });

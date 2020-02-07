@@ -8,6 +8,6 @@ export interface TaskInterface {
 // eslint-disable-next-line import/prefer-default-export
 export enum StatusTask {
   todo = 'Todo',
-  inprogess = 'In progress',
+  inprogess = 'Inprogress',
   done = 'Done',
 }

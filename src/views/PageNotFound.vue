@@ -25,7 +25,6 @@ export default {
         margin: auto;
         background: url('../assets/images/bg-error.jpg') no-repeat;
         background-size: cover;
-        // padding: 50px;
         border-radius: 10px;
         display: flex;
         justify-content: space-around;

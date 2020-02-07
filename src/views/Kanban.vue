@@ -18,13 +18,15 @@
           span.count-task {{ countTask(statusTask.todo) }}
         draggable.list-cards(
             ghost-class='ghost-card'
-            :animation='200'
+            id='todo'
             group='task'
-            :list='todoList'
-            :move='moveTest'
+            :animation='200'
+            :list='todoList' @add='updateTasks'
+            :move='moveCheck'
         )
           span.list-card.todo(
             v-for='taskItem in todoList'
+            :id ="taskItem.id"
             @click='taskEdit(taskItem.id)') {{ taskItem.title }}
            span.list-deadline {{ taskItem.deadline }}
 
@@ -34,13 +36,15 @@
           span.count-task {{ countTask(statusTask.inprogess) }}
         draggable.list-cards(
             ghost-class='ghost-card'
-            :animation='200'
+            id='inprogress'
             group='task'
-            :list='inProgressList'
-            :move='moveTest'
+            :animation='200'
+            :list='inProgressList' @add='updateTasks'
+            :move='moveCheck'
         )
           span.list-card.inProgess(
           v-for='taskItem in inProgressList'
+          :id ="taskItem.id"
           @click='taskEdit(taskItem.id)') {{ taskItem.title }}
            span.list-deadline {{ taskItem.deadline }}
 
@@ -50,13 +54,15 @@
           span.count-task {{ countTask(statusTask.done) }}
         draggable.list-cards(
             ghost-class='ghost-card'
-            :animation='200'
             group='task'
-            :list='doneList'
-            :move='moveTest'
+            id='done'
+            :animation='200'
+            :list='doneList' @add='updateTasks'
+            :move='moveCheck'
         )
           span.list-card.done(
           v-for='taskItem in doneList'
+          :id ="taskItem.id"
           @click='taskEdit(taskItem.id)') {{ taskItem.title }}
            span.list-deadline {{ taskItem.deadline }}
 </template>
@@ -80,11 +86,6 @@ export default class Kanban extends Vue {
 
   tasksEdit: TaskInterface = {} as TaskInterface;
 
-  taskEdit(id: number) {
-    this.isDetailTask = true;
-    this.tasksEdit = this.$store.getters.getTaskById(id);
-  }
-
   todoList = this.$store.getters.getTaskItems.filter((obj:TaskInterface) => obj.status
     === StatusTask.todo);
 
@@ -93,11 +94,18 @@ export default class Kanban extends Vue {
 
   doneList = this.$store.getters.getTaskItems.filter((obj:TaskInterface) => obj.status
     === StatusTask.done);
-  /* eslint-disable */
-  moveTest(parametr: any) {
-    const moveTest = parametr;
-    console.log(moveTest.to);
-    console.log(moveTest.dragged);
+
+  taskEdit(id: number) {
+    this.isDetailTask = true;
+    this.tasksEdit = this.$store.getters.getTaskById(id);
+  }
+
+  moveCheck = (event: any) => !(event.from.id === 'done' && event.to.id === 'todo');
+
+  updateTasks(event: any) {
+    const status: StatusTask = event.to.id;
+    const idTask: number = event.clone.id;
+    this.$store.dispatch('updateStatusTask', { idTask, status });
   }
 
   countTask(status: StatusTask) {
