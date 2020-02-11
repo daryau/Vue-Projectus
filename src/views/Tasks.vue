@@ -21,8 +21,7 @@
                 span.task-time.block.fw700 {{taskItem.deadline}}
             span.task-title.block.fw600 {{taskItem.title}}
             p.task-text {{taskItem.description}}
-        .remove-task(
-            v-on:click='removeTask(index)') &times;
+        .remove-task(v-on:click='removeTask(index)') &times;
 </template>
 
 <script lang="ts">
@@ -45,7 +44,7 @@ export default class Tasks extends Vue {
 
   taskItems = this.$store.getters.getTaskItems;
 
-  tasks: TaskInterface[] = [];
+  // tasks: TaskInterface[] = [];
 
   tasksEdit: TaskInterface = {} as TaskInterface;
 
@@ -58,22 +57,21 @@ export default class Tasks extends Vue {
     this.$store.dispatch('removeTask', index);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  mounted() {
+  mounted() { this.startAnimation(); }
+
+  startAnimation() {
     const blinkedTask = this.$refs['todo-list'] as Array<any>;
+
     for (let i = 0; i < blinkedTask.length; i += 1) {
       setTimeout(() => {
         blinkedTask[i].classList.add('scale-text-list');
-      }, 500 * i);
+      }, 300 * i);
+
+      setTimeout(() => {
+        blinkedTask[i].classList.remove('scale-text-list');
+      }, 300 * i + 1000);
     }
   }
-
-//   beforeUpdate() {
-//     const blinkedTask = this.$refs['todo-list'] as Array<any>;
-//     for (let j = 0; j <= blinkedTask.length; j += 1) {
-//       blinkedTask[j].classList.remove('scale-text-row');
-//     }
-//   }
 }
 </script>
 

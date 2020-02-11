@@ -28,7 +28,7 @@ export default new Router({
     },
     {
       path: '/files',
-      component: () => import('./views/PageNotFound.vue'),
+      component: () => import('./views/Files.vue'),
     },
     {
       path: '*',
