@@ -8,7 +8,7 @@
         )
         h1.filter-title.f25.fw700 Kanban
         .filter-blocks
-            input(placeholder='Search..')
+            input(v-model='searchFilter' placeholder='Search..')
             input(type='date')
             input(type='date')
     .kanban-list
@@ -26,6 +26,7 @@
         )
           span.list-card.todo(
             v-for='taskItem in todoList'
+            v-if='isSearch(taskItem.title)'
             :id ="taskItem.id"
             @click='taskEdit(taskItem.id)') {{ taskItem.title }}
            span.list-deadline {{ taskItem.deadline }}
@@ -44,6 +45,7 @@
         )
           span.list-card.inProgess(
           v-for='taskItem in inProgressList'
+          v-if='isSearch(taskItem.title)'
           :id ="taskItem.id"
           @click='taskEdit(taskItem.id)') {{ taskItem.title }}
            span.list-deadline {{ taskItem.deadline }}
@@ -62,6 +64,7 @@
         )
           span.list-card.done(
           v-for='taskItem in doneList'
+          v-if='isSearch(taskItem.title)'
           :id ="taskItem.id"
           @click='taskEdit(taskItem.id)') {{ taskItem.title }}
            span.list-deadline {{ taskItem.deadline }}
@@ -84,6 +87,8 @@ export default class Kanban extends Vue {
 
   isDetailTask: boolean = false;
 
+  searchFilter: string = '';
+
   tasksEdit: TaskInterface = {} as TaskInterface;
 
   todoList = this.$store.getters.getTaskItems.filter((obj:TaskInterface) => obj.status
@@ -94,6 +99,10 @@ export default class Kanban extends Vue {
 
   doneList = this.$store.getters.getTaskItems.filter((obj:TaskInterface) => obj.status
     === StatusTask.done);
+
+  isSearch(title: string) {
+    return title.toLowerCase().includes(this.searchFilter.toLowerCase(), 0);
+  }
 
   taskEdit(id: number) {
     this.isDetailTask = true;
@@ -155,6 +164,7 @@ $orange: #FB7D44;
         background-size: cover;
         border-radius: 10px;
         height: 100vh;
+        transition: all .1s ease-in-out;
         .filter {
             margin-bottom: 50px;
             border-radius: 10px 10px 0 0;

@@ -44,6 +44,8 @@ export default class Tasks extends Vue {
 
   taskItems = this.$store.getters.getTaskItems;
 
+  time: Date = new Date();
+
   // tasks: TaskInterface[] = [];
 
   tasksEdit: TaskInterface = {} as TaskInterface;
